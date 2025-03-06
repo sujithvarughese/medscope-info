@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <div style={{ textAlign: "center", margin: 16 }}>
         <h1 style={{ fontWeight: 700, marginBottom: 24 }}>Privacy Policy</h1>
         <p>We do not collect any personal data or information from our users.</p>
-        <Link to="/">Go Back</Link>
+        <Link to="/about">Go Back</Link>
       </div>
     </div>
 

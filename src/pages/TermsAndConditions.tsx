@@ -81,7 +81,7 @@ const TermsAndConditions = () => {
 
       <p><strong>By using MedScope, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</strong></p>
 
-      <Link to="/">Go Back</Link>
+      <Link to="/about">Go Back</Link>
     </div>
   );
 };
