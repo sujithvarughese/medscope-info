@@ -1,3 +1,5 @@
+import {Link} from "react-router";
+
 const TermsAndConditions = () => {
   return (
     <div>
@@ -77,16 +79,9 @@ const TermsAndConditions = () => {
         </li>
       </ol>
 
-      <p>By using MedScope, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.
+      <p><strong>By using MedScope, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</strong></p>
 
-      </p>
-
-
-
-
-
-
-
+      <Link to="/">Go Back</Link>
     </div>
   );
 };

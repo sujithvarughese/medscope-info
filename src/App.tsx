@@ -3,7 +3,7 @@ import {Link} from "react-router";
 
 const App = () => {
   return (
-    <div style={{display: "flex", gap: 56, alignItems: "center", padding: 16, maxWidth: 1000, margin: "auto" }}>
+    <div style={{display: "flex", gap: 56, alignItems: "center", maxWidth: 1000, margin: "auto" }}>
       <div>
         <h1 style={{ fontWeight: 700, marginBottom: 24, textAlign: "start" }}>MedScope</h1>
         <p style={{ textAlign: "start" }}>MedScope is a comprehensive medical app designed to provide instant access to essential health information. Users can look up details on any drug or medical condition, receive a personalized health assessment based on their profile, and get potential condition suggestions by entering symptoms. The app also includes useful tools like a BMI calculator and other health metrics to help users stay informed about their well-being. Whether you're looking for medication details, self-assessment tools, or general health insights, MedScope is your go-to medical companion.</p>
