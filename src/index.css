@@ -14,10 +14,14 @@
 }
 
 body {
-  margin: 56px auto;
+  margin: 84px auto;
   padding: 0;
   box-sizing: border-box;
   max-width: 900px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  font-family: 'Avenir Next', sans-serif;
 }
 
 h1 {

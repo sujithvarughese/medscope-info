@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
-import {openai} from "@/utilities/api";
+import {openai} from "../utilities/api";
 
 type PossibleConditions = {
   condition: string,
@@ -329,11 +329,11 @@ const globalSlice = createSlice({
       state.results.healthTip = action.payload
       state.loading = false
     })
-    builder.addCase(fetchHealthTip.rejected, (state, action) => {
+    builder.addCase(fetchHealthTip.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchHealthTip.pending, (state, action) => {
+    builder.addCase(fetchHealthTip.pending, (state) => {
       state.loading = true
     })
     builder.addCase(fetchConditionInfo.fulfilled, (state, action) => {
@@ -344,11 +344,11 @@ const globalSlice = createSlice({
       state.results.conditionInfo.lifestyleConsiderations = action.payload.educationalContent.lifestyleConsiderations
       state.loading = false
     })
-    builder.addCase(fetchConditionInfo.rejected, (state, action) => {
+    builder.addCase(fetchConditionInfo.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchConditionInfo.pending, (state, action) => {
+    builder.addCase(fetchConditionInfo.pending, (state) => {
       state.loading = true
     })
     builder.addCase(fetchDrugInfo.fulfilled, (state, action) => {
@@ -359,11 +359,11 @@ const globalSlice = createSlice({
       state.results.drugInfo.sideEffects = action.payload.sideEffects
       state.loading = false
     })
-    builder.addCase(fetchDrugInfo.rejected, (state, action) => {
+    builder.addCase(fetchDrugInfo.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchDrugInfo.pending, (state, action) => {
+    builder.addCase(fetchDrugInfo.pending, (state) => {
       state.loading = true
     })
     builder.addCase(fetchSymptomAssessment.fulfilled, (state, action) => {
@@ -374,11 +374,11 @@ const globalSlice = createSlice({
       state.results.symptomAssessment.preventiveMeasures = action.payload.result.educationalResources.preventiveMeasures
       state.loading = false
     })
-    builder.addCase(fetchSymptomAssessment.rejected, (state, action) => {
+    builder.addCase(fetchSymptomAssessment.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchSymptomAssessment.pending, (state, action) => {
+    builder.addCase(fetchSymptomAssessment.pending, (state) => {
       state.loading = true
     })
     builder.addCase(fetchHealthRecommendations.fulfilled, (state, action) => {
@@ -399,11 +399,11 @@ const globalSlice = createSlice({
       state.results.healthAssessment.recommendations.monitoringMetrics = action.payload.result.progressTracking.monitoringMetrics
       state.loading = false
     })
-    builder.addCase(fetchHealthRecommendations.rejected, (state, action) => {
+    builder.addCase(fetchHealthRecommendations.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchHealthRecommendations.pending, (state, action) => {
+    builder.addCase(fetchHealthRecommendations.pending, (state) => {
       state.loading = true
     })
     builder.addCase(fetchBmiResults.fulfilled, (state, action) => {
@@ -420,17 +420,17 @@ const globalSlice = createSlice({
       state.profile.bmi = action.payload.bmi.value
       state.loading = false
     })
-    builder.addCase(fetchBmiResults.rejected, (state, action) => {
+    builder.addCase(fetchBmiResults.rejected, (state) => {
       state.loading = false
       console.log("Failed to fetch response")
     })
-    builder.addCase(fetchBmiResults.pending, (state, action) => {
+    builder.addCase(fetchBmiResults.pending, (state) => {
       state.loading = true
     })
   }
 })
 
-export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  (payload) => {
+export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  () => {
   try {
     const response = await openai.post("", {
       model: "gpt-3.5-turbo-0125",
@@ -458,7 +458,7 @@ export const fetchConditionInfo = createAsyncThunk('global/fetchConditionInfo', 
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getMedicalInformation',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': process.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -507,14 +507,14 @@ export const fetchDrugInfo = createAsyncThunk('global/fetchDrugInfo', async (pay
   }
 })
 
-export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAssessment', async (payload, { getState }) => {
+export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAssessment', async (_payload, { getState }) => {
   const state: any = getState()
   const options = {
     method: 'POST',
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/analyzeSymptomsAndDiagnose',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': process.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -541,29 +541,14 @@ export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAsses
   }
 })
 
-export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRecommendations', async (payload, { getState }) => {
+export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRecommendations', async (_payload, { getState }) => {
   const state: any = getState()
-  const data = {
-    healthProfile: {
-      age: state.global.profile.age,
-        gender: state.global.profile.sex,
-        weight: state.global.profile.weight,
-        height: state.global.profile.height,
-        bmi: state.global.profile.bmi,
-        medicalConditions: state.global.profile.medicalHistory,
-        lifestyle: state.global.profile.lifestyle,
-        familyHistory: state.global.profile.familyHistory,
-        vitals: state.global.profile.vitals
-    },
-    goals: state.global.profile.goals,
-      lang: 'en'
-  }
   const options = {
     method: 'POST',
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getHealthRecommendations',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': process.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -591,14 +576,14 @@ export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRe
   }
 })
 
-export const fetchBmiResults = createAsyncThunk('global/fetchBmiResults', async (payload, { getState }) => {
+export const fetchBmiResults = createAsyncThunk('global/fetchBmiResults', async (_payload, { getState }) => {
   const state: any = getState()
   console.log("fetching bmi results...")
   const options = {
     method: 'POST',
     url: 'https://bmi.p.rapidapi.com/v1/bmi',
     headers: {
-      'x-rapidapi-key': process.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
       'x-rapidapi-host': 'bmi.p.rapidapi.com',
       'Content-Type': 'application/json'
     },

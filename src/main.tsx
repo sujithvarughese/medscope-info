@@ -8,18 +8,29 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import {MantineProvider} from "@mantine/core";
 import About from "./pages/About.tsx";
+import AI from "./pages/AI.tsx"
+import {Provider} from "react-redux";
+import {store} from "./utilities/store.ts";
+import Home from "./pages/Home.tsx";
+import Lookup from "./pages/Lookup.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/termsandconditions" element={<TermsAndConditions />} />
-        </Routes>
-      </HashRouter>
+      <Provider store={store}>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route element={<Home />} index={true} />
+              <Route path="/ai" element={<AI />} />
+              <Route path="/lookup" element={<Lookup />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/termsandconditions" element={<TermsAndConditions />} />
+            </Route>
+          </Routes>
+        </HashRouter>
+      </Provider>
     </MantineProvider>
   </StrictMode>,
 )
