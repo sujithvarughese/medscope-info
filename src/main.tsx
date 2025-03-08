@@ -15,6 +15,8 @@ import Home from "./pages/Home.tsx";
 import Lookup from "./pages/Lookup.tsx";
 import SymptomForm from "./pages/SymptomForm.tsx";
 import SymptomResults from "./pages/SymptomResults.tsx";
+import AssessmentForm from "./pages/AssessmentForm.tsx";
+import AssessmentResults from "./pages/AssessmentResults.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -27,6 +29,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/ai" element={<AI />} />
               <Route path="/symptomForm" element={<SymptomForm />} />
               <Route path="/symptomResults" element={<SymptomResults />} />
+              <Route path="/assessmentForm" element={<AssessmentForm />} />
+              <Route path="/assessmentResults" element={<AssessmentResults />} />
               <Route path="/lookup" element={<Lookup />} />
               <Route path="/about" element={<About />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -1,5 +1,5 @@
 import { FaChevronRight } from "react-icons/fa";
-import {BackgroundImage, Box, Flex, Text, Title, UnstyledButton} from "@mantine/core";
+import {BackgroundImage, Box, Flex, Text, UnstyledButton} from "@mantine/core";
 import {useNavigate} from "react-router";
 import bg1 from "../assets/bg-1.jpeg"
 
