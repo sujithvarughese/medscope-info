@@ -1,61 +1,46 @@
 import { FaChevronRight } from "react-icons/fa";
-import {Box, Text, UnstyledButton} from "@mantine/core";
+import {BackgroundImage, Box, Flex, Text, Title, UnstyledButton} from "@mantine/core";
 import {useNavigate} from "react-router";
-
+import bg1 from "../assets/bg-1.jpeg"
 
 const AI = () => {
 
   const navigate = useNavigate();
 
   return (
-    <Box style={styles.background}>
+    <BackgroundImage src={bg1} style={styles.background}>
       <Box style={styles.container}>
         <Text style={styles.title}>Powerful AI-based Health Tools</Text>
 
-        <Box style={styles.buttonContainer}>
+        <Flex direction="column" style={styles.buttonContainer}>
 
-          <UnstyledButton onClick={() => navigate("/symptomForm")} style={styles.link}>
-            <Box style={styles.linkContent}>
-              <Box style={styles.textContainer}>
-                <Text style={styles.heading}>Analyze Symptoms</Text>
-                <Text style={styles.description}>Analyze your symptoms and get a personalized health assessment</Text>
-              </Box>
-              <Box>
-                <FaChevronRight />
-
-              </Box>
+          <UnstyledButton onClick={() => navigate("/symptomForm")} style={styles.button}>
+            <Box style={styles.textContainer}>
+              <Text style={styles.heading}>Analyze Symptoms</Text>
+              <Text style={styles.description}>Analyze your symptoms and get a personalized health assessment</Text>
             </Box>
+            <FaChevronRight />
           </UnstyledButton>
 
-          <UnstyledButton onClick={() => navigate("/assessmentForm")} style={styles.link}>
-            <Box style={styles.linkContent}>
-              <Box style={styles.textContainer}>
-                <Text style={styles.heading}>Get Health Recommendations</Text>
-                <Text style={styles.description}>Get personalized health recommendations based on your profile</Text>
-              </Box>
-              <Box>
-                <FaChevronRight />
-
-              </Box>
+          <UnstyledButton onClick={() => navigate("/assessmentForm")} style={styles.button}>
+            <Box style={styles.textContainer}>
+              <Text style={styles.heading}>Get Health Recommendations</Text>
+              <Text style={styles.description}>Get personalized health recommendations based on your profile</Text>
             </Box>
+            <FaChevronRight />
           </UnstyledButton>
 
-          <UnstyledButton onClick={() => navigate("/bmiForm")} style={styles.link}>
-            <Box style={styles.linkContent}>
-              <Box style={styles.textContainer}>
-                <Text style={styles.heading}>Calculate BMI</Text>
-                <Text style={styles.description}>Calculate your BMI and more</Text>
-              </Box>
-              <Box>
-                <FaChevronRight />
-
-              </Box>
+          <UnstyledButton onClick={() => navigate("/bmiForm")} style={styles.button}>
+            <Box style={styles.textContainer}>
+              <Text style={styles.heading}>Calculate BMI</Text>
+              <Text style={styles.description}>Calculate your BMI and more</Text>
             </Box>
+            <FaChevronRight />
           </UnstyledButton>
+        </Flex>
 
-        </Box>
       </Box>
-    </Box>
+    </BackgroundImage>
 
 
 
@@ -65,7 +50,11 @@ const AI = () => {
 
 const styles = {
   background: {
-    height: "100%",
+    height: "100vh",
+    width: "100%",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
   container: {
     padding: 20,
@@ -74,20 +63,31 @@ const styles = {
     gap: 30
   },
   title: {
+    fontSize: 32,
+    fontWeight: "700",
   },
   buttonContainer: {
-    width: "100%",
     gap: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  link: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
 
   },
-  linkContent: {
-    alignItems: "center",
-    justifyContent: "space-between",
+  button: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: "100%",
+    backgroundColor: "white",
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    borderRadius: 10,
+    padding: 12,
   },
   textContainer: {
     width: "80%",

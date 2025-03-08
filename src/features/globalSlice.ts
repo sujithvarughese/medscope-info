@@ -25,13 +25,13 @@ export type Props = {
     allergies: string[],
     symptoms: string[],
     lifestyle: {
-      smoking: "none" | "sometimes" | "often",
-      alcohol: "none" | "low" | "moderate" | "high",
-      activityLevel: "sedentary" | "moderate" | "active",
-      exercise: "low" | "moderate" | "high",
-      diet: "poor" | "mixed" | "balanced" | "excellent",
+      smoking: "Never" | "Sometimes" | "Often",
+      alcohol: "Never" | "Sometimes" | "Often",
+      activityLevel: "Sedentary" | "Moderate" | "Active",
+      exercise: "Low" | "Moderate" | "High",
+      diet: "Poor" | "Mixed" | "Balanced" | "Excellent",
       sleepHours: number,
-      stressLevel: "low" | "moderate" | "high",
+      stressLevel: "Low" | "Moderate" | "High",
     },
     familyHistory: {
       "diabetes": boolean,
@@ -126,13 +126,13 @@ const initialState: Props = {
     allergies: [],
     symptoms: [],
     lifestyle: {
-      smoking: "none",
-      alcohol: "moderate",
-      activityLevel: "moderate",
-      exercise: "moderate",
-      diet: "balanced",
+      smoking: "Never",
+      alcohol: "Never",
+      activityLevel: "Moderate",
+      exercise: "Moderate",
+      diet: "Balanced",
       sleepHours: 8,
-      stressLevel:"moderate",
+      stressLevel:"Moderate",
     },
     familyHistory: {
       "diabetes": true,
@@ -453,12 +453,13 @@ export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  (
 })
 
 export const fetchConditionInfo = createAsyncThunk('global/fetchConditionInfo', async (payload: string) => {
+  console.log(payload)
   const options = {
     method: 'POST',
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getMedicalInformation',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -514,7 +515,7 @@ export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAsses
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/analyzeSymptomsAndDiagnose',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -548,7 +549,7 @@ export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRe
     url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getHealthRecommendations',
     params: {noqueue: '1'},
     headers: {
-      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
       'Content-Type': 'application/json'
     },
@@ -583,7 +584,7 @@ export const fetchBmiResults = createAsyncThunk('global/fetchBmiResults', async 
     method: 'POST',
     url: 'https://bmi.p.rapidapi.com/v1/bmi',
     headers: {
-      'x-rapidapi-key': import.meta.env.EXPO_PUBLIC_RAPID_API_KEY,
+      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'bmi.p.rapidapi.com',
       'Content-Type': 'application/json'
     },

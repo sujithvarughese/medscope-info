@@ -13,6 +13,8 @@ import {Provider} from "react-redux";
 import {store} from "./utilities/store.ts";
 import Home from "./pages/Home.tsx";
 import Lookup from "./pages/Lookup.tsx";
+import SymptomForm from "./pages/SymptomForm.tsx";
+import SymptomResults from "./pages/SymptomResults.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +25,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<App />}>
               <Route element={<Home />} index={true} />
               <Route path="/ai" element={<AI />} />
+              <Route path="/symptomForm" element={<SymptomForm />} />
+              <Route path="/symptomResults" element={<SymptomResults />} />
               <Route path="/lookup" element={<Lookup />} />
               <Route path="/about" element={<About />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
