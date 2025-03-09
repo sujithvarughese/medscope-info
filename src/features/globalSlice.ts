@@ -586,7 +586,7 @@ export const fetchBmiResults = createAsyncThunk('global/fetchBmiResults', async 
     headers: {
       'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'bmi.p.rapidapi.com',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     data: {
       weight: { value: state.global.profile.weight.toString(), unit: 'lb' },
