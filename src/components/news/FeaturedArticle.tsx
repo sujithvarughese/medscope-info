@@ -15,7 +15,7 @@ const FeaturedArticle = ({ source, title, url, description, urlToImage }: Featur
 
     <Paper style={styles.container}>
       <Box style={styles.container}>
-        <Image style={styles.image}  src={urlToImage } fallbackSrc={defaultImage} alt="news-cover"/>
+        <Image style={styles.image}  src={urlToImage} fallbackSrc={defaultImage} alt="news-cover"/>
         <Box style={styles.textContainer}>
           <Anchor href={url} style={styles.title}>{title}</Anchor>
           <Text style={styles.description}>{description}</Text>
