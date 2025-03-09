@@ -26,7 +26,7 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
     }
   }, [category]);
 
-  const fetchAutoComplete = async (inputValue: string, callback: (options: Options[]) => void) => {
+  const fetchAutoComplete = async (inputValue: string): Promise<Options[]> => {
     if (category === "combined") {
       try {
         const responseConditions = await axios(`https://clinicaltables.nlm.nih.gov/api/conditions/v3/search?terms=${inputValue}&maxList=5`)
@@ -37,9 +37,10 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
         const drugResults = responseDrugs.data[1].map((item: string) => {
           return { group: "drugs", label: item, value: item }
         })
-        callback([...conditionResults, ...drugResults])
+        return [...conditionResults, ...drugResults]
       } catch (error) {
         console.log(error)
+        return []
       }
     } else if (category === "conditions") {
       try {
@@ -47,40 +48,32 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
         const conditionResults = responseConditions.data[3].map((item: string[]) => {
           return { group: "conditions", label: item[0], value: item[0] }
         })
-        callback(conditionResults)
+        return conditionResults
 
       } catch (error) {
         console.log(error)
+        return []
       }
     } else if (category === "drugs") {
       try {
         const responseDrugs = await axios(`https://clinicaltables.nlm.nih.gov/api/rxterms/v3/search?terms=${inputValue}&maxList=10`)
         const drugResults = responseDrugs.data
         const results = drugResults[1]
-        callback(results.map((item: string) => ({ group: "conditions", label: item, value: item })))
+        return results.map((item: string) => ({ group: "conditions", label: item, value: item }))
       } catch (error) {
         console.log(error)
+        return []
       }
     }
+    return [];
   }
 
+
   return (
-    <AsyncSelect styles={styles} loadOptions={fetchAutoComplete} cacheOptions defaultOptions placeholder={placeholderText} onChange={({ group, value }: Options): void => onSelect(value, group)}/>
+    <AsyncSelect loadOptions={fetchAutoComplete} cacheOptions defaultOptions placeholder={placeholderText} onChange={(newValue) => { if (newValue) { const { group, value } = newValue; onSelect(value, group); } }} />
   );
 };
 
-const styles = {
-  control: (provided: any, state: any) => ({
-    ...provided,
-    border: "none",
-    boxShadow: "none",
-    borderRadius: 0,
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    padding: 0,
-    height: 40,
-  })
-}
 
 
 

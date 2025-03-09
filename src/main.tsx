@@ -17,6 +17,8 @@ import SymptomForm from "./pages/SymptomForm.tsx";
 import SymptomResults from "./pages/SymptomResults.tsx";
 import AssessmentForm from "./pages/AssessmentForm.tsx";
 import AssessmentResults from "./pages/AssessmentResults.tsx";
+import BmiForm from "./pages/BmiForm.tsx";
+import BmiResults from "./pages/BmiResults.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -31,6 +33,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/symptomResults" element={<SymptomResults />} />
               <Route path="/assessmentForm" element={<AssessmentForm />} />
               <Route path="/assessmentResults" element={<AssessmentResults />} />
+              <Route path="/bmiForm" element={<BmiForm />} />
+              <Route path="/bmiResults" element={<BmiResults />} />
               <Route path="/lookup" element={<Lookup />} />
               <Route path="/about" element={<About />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
