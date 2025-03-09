@@ -16,6 +16,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import Layout from "./components/Layout.tsx";
 import {useAuthContext} from "./context/AuthContext.tsx";
+import Landing from "./pages/Landing.tsx";
 
 const App = () => {
 
@@ -49,8 +50,7 @@ const App = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route element={<Home />} index={true} />
-          <Route path="/research" element={<Research />} />
+          <Route element={<Landing />} index={true} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />

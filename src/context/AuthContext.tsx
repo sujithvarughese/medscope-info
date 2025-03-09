@@ -5,20 +5,22 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   SET_IS_LOADING,
-  SET_AUTH_STATE,
-  SHOW_REGISTER_MODAL,
 } from "./actions";
 import { api } from '../utilities/api'
 
 const initialState = {
   user: null,
   isLoading: false,
-  authState: "",
-  favorites: [],
-  showRegisterModal: false
 }
 
-const AuthContext = createContext()
+const AuthContext = createContext({
+  user: null,
+  isLoading: false,
+  register: async () => {},
+  login: async () => {},
+  logout: async () => {},
+  setIsLoading: () => {}
+})
 
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -34,7 +36,14 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     initialState
   )
 
-  const register = async (credentials: { email: string; password: string }) => {
+  type RegisterProps = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string
+  }
+
+  const register = async (credentials: RegisterProps) => {
     try {
       const response = await api.post("/auth/register", credentials)
       // user = { userID: _id, isAdmin: isAdmin }
@@ -49,23 +58,19 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     }
   }
 
-  const setShowRegisterModal = () => {
-    dispatch({
-      type: SHOW_REGISTER_MODAL
-    })
-  }
   const login = async (credentials: { email: string; password: string }) => {
       try {
           const response = await api.post("/auth/login", credentials)
-          const { user, favorites } = response.data
+          const { user } = response.data
           dispatch({
               type: LOGIN_USER,
-              payload: { user, favorites }
+              payload: { user }
           })
       } catch (error) {
           console.log(error);
       }
   }
+
   const logout = async () => {
     await api("/auth/logout");
     dispatch({ type: LOGOUT_USER });
@@ -78,13 +83,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     })
   }
 
-  const setAuthState = (authState: string) => {
-    dispatch({
-      type: SET_AUTH_STATE,
-      payload: { authState: authState }
-    })
-  }
-
   return (
     <AuthContext.Provider value={
       {
@@ -93,8 +91,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         login,
         logout,
         setIsLoading,
-        setAuthState,
-        setShowRegisterModal,
       }
     }>
       { children }

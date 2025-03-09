@@ -29,7 +29,6 @@ const NewsSection = () => {
       })
       let { articles: healthArticles } = responseHealth.data
       let { articles: scienceArticles } = responseScience.data
-      console.log(scienceArticles)
       const filteredHealthArticles = healthArticles.filter((article: articleProps) => !!article["urlToImage"])
       const filteredScienceArticles = scienceArticles.filter((article: articleProps) => !!article["urlToImage"])
       setHealthArticles(filteredHealthArticles)
