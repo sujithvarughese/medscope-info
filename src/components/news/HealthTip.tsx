@@ -14,44 +14,14 @@ const HealthTip = () => {
   }, []);
 
   return (
-    <Box style={styles.container}>
-      <Flex style={styles.heading}>
-        <IoFitnessSharp size={24} color="red" />
-        <Title style={styles.title}>Health tip of the day</Title>
+    <Box p={{ base: "md", md: "xl"}} bg="white" maw={600} mx="auto" style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
+      <Flex gap={8} align="center">
+        <IoFitnessSharp size={32} color="red" />
+        <Title style={{ fontSize: 18 }}>Health tip of the day</Title>
       </Flex>
-      <Text style={styles.text}>{healthTip}</Text>
+      <Text>{healthTip}</Text>
     </Box>
  );
-};
-
-const styles = {
-  container: {
-    backgroundColor: "red",
-    padding: 12,
-    elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 6,
-    marginVertical: 12
-  },
-  heading: {
-    gap: 8,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "600"
-  },
-  text: {
-    fontSize: 16,
-  }
 };
 
 export default HealthTip;

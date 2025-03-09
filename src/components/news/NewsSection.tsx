@@ -29,8 +29,9 @@ const NewsSection = () => {
       })
       let { articles: healthArticles } = responseHealth.data
       let { articles: scienceArticles } = responseScience.data
-      const filteredHealthArticles = healthArticles.filter((article: articleProps) => article["urlToImage"] !== null)
-      const filteredScienceArticles = scienceArticles.filter((article: articleProps) => article["urlToImage"] !== null)
+      console.log(scienceArticles)
+      const filteredHealthArticles = healthArticles.filter((article: articleProps) => !!article["urlToImage"])
+      const filteredScienceArticles = scienceArticles.filter((article: articleProps) => !!article["urlToImage"])
       setHealthArticles(filteredHealthArticles)
       setScienceArticles(filteredScienceArticles)
     } catch (error) {
@@ -43,108 +44,87 @@ const NewsSection = () => {
   }, [])
 
   return (
-    <Box style={styles.container}>
+    <Flex direction="column" gap={32}>
+      <Box>
+        <Title style={styles.header}>Top Health News</Title>
 
-      <Title style={styles.header}>Top Health News</Title>
-      <Flex direction={{ base: "column", sm: "row" }}>
-        <FeaturedArticle
-          source={healthArticles[0]?.source.name}
-          title={healthArticles[0]?.title}
-          description={healthArticles[0]?.description}
-          url={healthArticles[0]?.url}
-          urlToImage={healthArticles[0]?.urlToImage ?? ''}
-          date={healthArticles[0]?.publishedAt}
-        />
-        <FeaturedArticle
-          source={healthArticles[1]?.source.name}
-          title={healthArticles[1]?.title}
-          description={healthArticles[1]?.description}
-          url={healthArticles[1]?.url}
-          urlToImage={healthArticles[1]?.urlToImage ?? ''}
-          date={healthArticles[1]?.publishedAt}
-        />
-      </Flex>
+        <Flex direction={{ base: "column", sm: "row" }} gap={16}>
+          <FeaturedArticle
+            source={healthArticles[0]?.source.name}
+            title={healthArticles[0]?.title}
+            description={healthArticles[0]?.description}
+            url={healthArticles[0]?.url}
+            urlToImage={healthArticles[0]?.urlToImage ?? ''}
+            date={healthArticles[0]?.publishedAt}
+          />
+          <FeaturedArticle
+            source={healthArticles[1]?.source.name}
+            title={healthArticles[1]?.title}
+            description={healthArticles[1]?.description}
+            url={healthArticles[1]?.url}
+            urlToImage={healthArticles[1]?.urlToImage ?? ''}
+            date={healthArticles[1]?.publishedAt}
+          />
+        </Flex>
+        <Carousel slideSize={{base: "50%", sm: "33.3%", md: "20%"}} height={300} align="start">
+          {healthArticles?.slice(2).map((item, index) =>
+            <Carousel.Slide key={index}>
+              <NewsTile
+                source={item.source.name}
+                title={item.title}
+                description={item.description}
+                url={item.url}
+                urlToImage={item.urlToImage ?? ''}
+                date={item.publishedAt}
+              />
+            </Carousel.Slide>
 
-      <Carousel slideSize={{base: "50%", sm: "33.3%", md: "20%"}} height={300} align="start">
-        {healthArticles?.slice(2).map((item, index) =>
-          <Carousel.Slide key={index}>
-            <NewsTile
-              source={item.source.name}
-              title={item.title}
-              description={item.description}
-              url={item.url}
-              urlToImage={item.urlToImage ?? ''}
-              date={item.publishedAt}
-            />
-          </Carousel.Slide>
+          )}
+        </Carousel>
+      </Box>
 
-        )}
-      </Carousel>
+      <Box>
+        <Text style={styles.header}>Top Science News</Text>
+        <Flex direction={{ base: "column", sm: "row" }} gap={16}>
+          <FeaturedArticle
+            source={scienceArticles[0]?.source.name}
+            title={scienceArticles[0]?.title}
+            description={scienceArticles[0]?.description}
+            url={scienceArticles[0]?.url}
+            urlToImage={scienceArticles[0]?.urlToImage ?? ''}
+            date={scienceArticles[0]?.publishedAt}
+          />
+          <FeaturedArticle
+            source={scienceArticles[1]?.source.name}
+            title={scienceArticles[1]?.title}
+            description={scienceArticles[1]?.description}
+            url={scienceArticles[1]?.url}
+            urlToImage={scienceArticles[1]?.urlToImage ?? ''}
+            date={scienceArticles[1]?.publishedAt}
+          />
+        </Flex>
 
-      <Text style={styles.header}>Top Science News</Text>
-      <FeaturedArticle
-        source={scienceArticles[0]?.source.name}
-        title={scienceArticles[0]?.title}
-        description={scienceArticles[0]?.description}
-        url={scienceArticles[0]?.url}
-        urlToImage={scienceArticles[0]?.urlToImage ?? ''}
-        date={scienceArticles[0]?.publishedAt}
-      />
-      <FeaturedArticle
-        source={scienceArticles[1]?.source.name}
-        title={scienceArticles[1]?.title}
-        description={scienceArticles[1]?.description}
-        url={scienceArticles[1]?.url}
-        urlToImage={scienceArticles[1]?.urlToImage ?? ''}
-        date={scienceArticles[1]?.publishedAt}
-      />
-      <Carousel>
-        {scienceArticles?.map((item, index) =>
-          <Carousel.Slide key={index}>
-            <NewsTile
-              source={item.source.name}
-              title={item.title}
-              description={item.description}
-              url={item.url}
-              urlToImage={item.urlToImage ?? ''}
-              date={item.publishedAt}
-            />
-          </Carousel.Slide>
-
-        )}
-      </Carousel>
-
-      {/*
-
-      <FeaturedArticle
-        source={articles[1]?.source.name}
-        title={articles[1]?.title}
-        description={articles[1]?.description}
-        url={articles[1]?.url}
-        urlToImage={articles[1]?.urlToImage ?? ''}
-        date={articles[1]?.publishedAt}
-      />
-      <FeaturedArticle
-        source={articles[2]?.source.name}
-        title={articles[2]?.title}
-        description={articles[2]?.description}
-        url={articles[2]?.url}
-        urlToImage={articles[2]?.urlToImage ?? ''}
-        date={articles[2]?.publishedAt}
-      />
-      */}
-
-    </Box>
+        <Carousel slideSize={{base: "50%", sm: "33.3%", md: "20%"}} height={300} align="start">
+          {scienceArticles?.slice(2).map((item, index) =>
+            <Carousel.Slide key={index}>
+              <NewsTile
+                source={item.source.name}
+                title={item.title}
+                description={item.description}
+                url={item.url}
+                urlToImage={item.urlToImage ?? ''}
+                date={item.publishedAt}
+              />
+            </Carousel.Slide>
+          )}
+        </Carousel>
+      </Box>
+    </Flex>
  );
 };
 
 const styles = {
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 12,
 
-  },
   header: {
     fontSize: 24,
     fontWeight: 'bold',

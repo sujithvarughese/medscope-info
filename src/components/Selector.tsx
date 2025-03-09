@@ -82,7 +82,6 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
       styles={{
         control: (provided) => ({
           ...provided,
-          width: 300,
           borderRadius: 6,
           backgroundColor: "white",
           boxShadow: "0 0 10px rgba(0,0,0,0.1)",

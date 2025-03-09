@@ -9,7 +9,7 @@ const AI = () => {
 
   return (
     <BackgroundImage src={bg1} h="100vh">
-      <Box maw={900} m="auto" p="xl" h="100%">
+      <Box maw={900} m="auto" p={{ base: "md", md: "xl"}} h="100%">
         <Text style={styles.title}>Powerful AI-based Health Tools</Text>
 
         <Flex direction="column" gap={56} h="100%">

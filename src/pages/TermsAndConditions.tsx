@@ -1,8 +1,9 @@
 import {Link} from "react-router";
+import {Box} from "@mantine/core";
 
 const TermsAndConditions = () => {
   return (
-    <div>
+    <Box p={{ base: "md", md: "xl" }}>
       <h1>Terms and Conditions</h1>
 
       <div>
@@ -82,7 +83,7 @@ const TermsAndConditions = () => {
       <p><strong>By using MedScope, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</strong></p>
 
       <Link to="/about">Go Back</Link>
-    </div>
+    </Box>
   );
 };
 
