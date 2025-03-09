@@ -45,7 +45,7 @@ const NewsSection = () => {
 
   return (
     <Flex direction="column" gap={32}>
-      {healthArticles.length &&
+      {!!healthArticles.length &&
       <Box>
         <Title style={styles.header}>Top Health News</Title>
 
@@ -84,7 +84,7 @@ const NewsSection = () => {
         </Carousel>
       </Box>
       }
-      {scienceArticles.length &&
+      {!!scienceArticles.length &&
       <Box>
         <Text style={styles.header}>Top Science News</Text>
         <Flex direction={{ base: "column", sm: "row" }} gap={16}>

@@ -1,14 +1,19 @@
 import axios from 'axios';
+import { config } from './constants'
 
-const API_KEY = import.meta.env.EXPO_PUBLIC_RAPID_API_KEY;
-
-export const drugApi = axios.create({
-  baseURL: 'https://drug-info-and-price-history.p.rapidapi.com/1/druginfo',
-  headers: {
-    'x-rapidapi-key': API_KEY,
-    'x-rapidapi-host': 'drug-info-and-price-history.p.rapidapi.com'
-  }
+export const api = axios.create({
+  baseURL: config.url.API_URL,
 })
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // console.log(error.response)
+    return Promise.reject(error);
+  }
+);
+
 export const bmiApi = axios.create({
   baseURL: 'https://bmi.p.rapidapi.com/v1/bmi',
   headers: {
