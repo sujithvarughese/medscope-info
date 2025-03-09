@@ -3,6 +3,7 @@ import {fetchBmiResults, setAge, setHeight, setHip, setSex, setWaist, setWeight}
 import {useNavigate} from "react-router";
 import {Button, Flex, Loader, Slider, Text} from "@mantine/core";
 import {MdFemale, MdMale} from "react-icons/md";
+import SliderContainer from "../components/SliderContainer.tsx";
 
 const BmiForm = () => {
 
@@ -24,11 +25,14 @@ const BmiForm = () => {
   }
 
   return (
-    <div>
-      <Flex style={styles.section}>
-        <Text>Age</Text>
-        <Slider min={18} max={120} step={1} value={age} w={200} onChange={value => dispatch(setAge(value))}/>
-      </Flex>
+    <Flex direction="column" maw={600} p="xl" m="auto" gap={32}>
+
+      <SliderContainer
+        value={age}
+        onChange={value => dispatch(setAge(value))}
+        min={18} max={120} step={1}
+        label="Age"
+      />
 
       <Flex style={styles.section}>
         <Text style={styles.heading}>Sex</Text>
@@ -45,29 +49,41 @@ const BmiForm = () => {
         </Text>
       </Flex>
 
-      <Flex style={styles.section}>
-        <Text>Height</Text>
-        <Slider min={18} max={96} step={1} value={height} w={200} onChange={value => dispatch(setHeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={height}
+        onChange={value => dispatch(setHeight(value))}
+        min={18} max={96} step={1}
+        label="Height"
+        displayValue={`${Math.floor(height / 12)}' ${height % 12}"`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Weight</Text>
-        <Slider min={50} max={500} step={1} value={weight} w={200} onChange={value => dispatch(setWeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={weight}
+        onChange={value => dispatch(setWeight(value))}
+        min={50} max={500} step={1}
+        label="Weight"
+        displayValue={`${weight}' lbs`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Waist Size</Text>
-        <Slider min={18} max={52} step={1} value={waist} w={200} onChange={value => dispatch(setWaist(value))}/>
-      </Flex>
+      <SliderContainer
+        value={waist}
+        onChange={value => dispatch(setWaist(value))}
+        min={18} max={52} step={1}
+        label="Waist Size"
+        displayValue={`${waist}"`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Hip Size</Text>
-        <Slider min={18} max={52} step={1} value={hip} w={200} onChange={value => dispatch(setHip(value))}/>
-      </Flex>
+      <SliderContainer
+        value={hip}
+        onChange={value => dispatch(setHip(value))}
+        min={18} max={52} step={1}
+        label="Hip Size"
+        displayValue={`${hip}"`}
+      />
 
       {loading ? <Loader /> : <Button onClick={handleSubmit}>Submit</Button>}
 
-    </div>
+    </Flex>
   );
 };
 

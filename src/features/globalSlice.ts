@@ -29,7 +29,7 @@ export type Props = {
       alcohol: "Never" | "Sometimes" | "Often",
       activityLevel: "Sedentary" | "Moderate" | "Active",
       exercise: "Low" | "Moderate" | "High",
-      diet: "Poor" | "Mixed" | "Balanced" | "Excellent",
+      diet: "Poor" | "Mixed" | "Balanced",
       sleepHours: number,
       stressLevel: "Low" | "Moderate" | "High",
     },

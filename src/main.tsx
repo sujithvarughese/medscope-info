@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@mantine/core/styles.css';
 import './index.css'
+import '@mantine/carousel/styles.css';
 import App from './App.tsx'
 import {HashRouter, Route, Routes} from "react-router";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
@@ -12,7 +13,7 @@ import AI from "./pages/AI.tsx"
 import {Provider} from "react-redux";
 import {store} from "./utilities/store.ts";
 import Home from "./pages/Home.tsx";
-import Lookup from "./pages/Lookup.tsx";
+import Research from "./pages/Research.tsx";
 import SymptomForm from "./pages/SymptomForm.tsx";
 import SymptomResults from "./pages/SymptomResults.tsx";
 import AssessmentForm from "./pages/AssessmentForm.tsx";
@@ -35,7 +36,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/assessmentResults" element={<AssessmentResults />} />
               <Route path="/bmiForm" element={<BmiForm />} />
               <Route path="/bmiResults" element={<BmiResults />} />
-              <Route path="/lookup" element={<Lookup />} />
+              <Route path="/research" element={<Research />} />
               <Route path="/about" element={<About />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/termsandconditions" element={<TermsAndConditions />} />

@@ -8,11 +8,11 @@ const AI = () => {
   const navigate = useNavigate();
 
   return (
-    <BackgroundImage src={bg1} style={styles.background}>
-      <Box style={styles.container}>
+    <BackgroundImage src={bg1} h="100vh">
+      <Box maw={900} m="auto" p="xl" h="100%">
         <Text style={styles.title}>Powerful AI-based Health Tools</Text>
 
-        <Flex direction="column" style={styles.buttonContainer}>
+        <Flex direction="column" gap={56} h="100%">
 
           <UnstyledButton onClick={() => navigate("/symptomForm")} style={styles.button}>
             <Box style={styles.textContainer}>
@@ -49,45 +49,23 @@ const AI = () => {
 };
 
 const styles = {
-  background: {
-    height: "100vh",
-    width: "100%",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  },
   container: {
-    padding: 20,
-    paddingTop: 60,
-    flex: 1,
-    gap: 30
+
   },
   title: {
     fontSize: 32,
     fontWeight: "700",
   },
-  buttonContainer: {
-    gap: 16,
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
 
-  },
   button: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: "100%",
     backgroundColor: "white",
-    elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    borderRadius: 10,
-    padding: 12,
+    boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)",
+    borderRadius: 12,
+    padding: 32,
   },
   textContainer: {
     width: "80%",

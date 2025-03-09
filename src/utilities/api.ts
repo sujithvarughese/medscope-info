@@ -9,6 +9,14 @@ export const drugApi = axios.create({
     'x-rapidapi-host': 'drug-info-and-price-history.p.rapidapi.com'
   }
 })
+export const bmiApi = axios.create({
+  baseURL: 'https://bmi.p.rapidapi.com/v1/bmi',
+  headers: {
+    'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
+    'x-rapidapi-host': 'bmi.p.rapidapi.com',
+    'Content-Type': 'application/json',
+  },
+})
 
 export const openai = axios.create({
   baseURL: 'https://api.openai.com/v1/chat/completions',

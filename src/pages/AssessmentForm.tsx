@@ -1,5 +1,17 @@
 import {useAppDispatch, useAppSelector} from "../utilities/hooks.ts";
-import {ActionIcon, Box, Button, Flex, Loader, NativeSelect, Slider, Switch, Text} from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Checkbox,
+  Flex, Group,
+  Loader,
+  NativeSelect,
+  Radio,
+  Slider,
+  Switch,
+  Text
+} from "@mantine/core";
 import {
   addMedicalHistory, fetchHealthRecommendations, fetchSymptomAssessment,
   removeMedicalHistory,
@@ -24,8 +36,10 @@ import {
 } from "../features/globalSlice.ts";
 import {MdFemale, MdMale} from "react-icons/md";
 import Selector from "../components/Selector.tsx";
-import {IoMdRemoveCircle} from "react-icons/io";
+import {IoIosArrowBack, IoMdRemoveCircle} from "react-icons/io";
 import {useNavigate} from "react-router";
+import {useEffect} from "react";
+import SliderContainer from "../components/SliderContainer.tsx";
 
 const AssessmentForm = () => {
 
@@ -68,14 +82,23 @@ const AssessmentForm = () => {
   }
 
   return (
-    <Flex direction="column" style={styles.container}>
-      <Flex style={styles.section}>
-        <Text>Age</Text>
-        <Slider min={18} max={120} step={1} value={age} w={200} onChange={value => dispatch(setAge(value))}/>
+    <Flex direction="column" maw={600} gap={32} p="xl" m="auto">
+
+      <Flex>
+        <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
+          <IoIosArrowBack />
+        </ActionIcon>
       </Flex>
 
+      <SliderContainer
+        value={age}
+        onChange={value => dispatch(setAge(value))}
+        min={18} max={120} step={1}
+        label="Age"
+      />
+
       <Flex style={styles.section}>
-        <Text style={styles.heading}>Sex</Text>
+        <Text>Sex</Text>
         <Text style={styles.selections}>
           <Button style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
             <MdMale />
@@ -89,75 +112,112 @@ const AssessmentForm = () => {
         </Text>
       </Flex>
 
-      <Flex style={styles.section}>
-        <Text>Height</Text>
-        <Slider min={18} max={96} step={1} value={height} w={200} onChange={value => dispatch(setHeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={height}
+        onChange={value => dispatch(setHeight(value))}
+        min={18} max={96} step={1}
+        label="Height"
+        displayValue={`${Math.floor(height / 12)}' ${height % 12}"`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Weight</Text>
-        <Slider min={50} max={500} step={1} value={weight} w={200} onChange={value => dispatch(setWeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={weight}
+        onChange={value => dispatch(setWeight(value))}
+        min={50} max={500} step={1}
+        label="Weight"
+        displayValue={`${weight}' lbs`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Weight</Text>
-        <Slider min={2} max={50} step={1} value={bmi} w={200} onChange={value => dispatch(setBmi(value))}/>
-      </Flex>
+      <SliderContainer
+        value={bmi}
+        onChange={value => dispatch(setBmi(value))}
+        min={2} max={50} step={1}
+        label="Body Mass Index (BMI)"
+      />
 
-      <Flex style={styles.section}>
-        <Text>Diastolic Blood Pressure</Text>
-        <Slider min={50} max={200} step={1} value={diastolicBloodPressure} w={200} onChange={value => dispatch(setDiastolicBloodPressure(value))}/>
-      </Flex>
+      <SliderContainer
+        value={diastolicBloodPressure}
+        onChange={value => dispatch(setDiastolicBloodPressure(value))}
+        min={50} max={200} step={1}
+        label="Diastolic Blood Pressure"
+      />
+      <SliderContainer
+        value={systolicBloodPressure}
+        onChange={value => dispatch(setSystolicBloodPressure(value))}
+        min={40} max={160} step={1}
+        label="Systolic Blood Pressure"
+      />
 
-      <Flex style={styles.section}>
-        <Text>Systolic Blood Pressure</Text>
-        <Slider min={2} max={50} step={150} value={systolicBloodPressure} w={200} onChange={value => dispatch(setSystolicBloodPressure(value))}/>
-      </Flex>
+      <SliderContainer
+        value={restingHeartRate}
+        onChange={value => dispatch(setRestingHeartRate(value))}
+        min={40} max={200} step={1}
+        label="Resting Heart Rate"
+      />
 
-      <Flex style={styles.section}>
-        <Text>Resting Heart Rate</Text>
-        <Slider min={40} max={50} step={200} value={restingHeartRate} w={200} onChange={value => dispatch(setRestingHeartRate(value))}/>
-      </Flex>
-
-      <Flex style={styles.section}>
-        <Text>Blood Sugar</Text>
-        <Slider min={50} max={50} step={200} value={bloodSugar} w={200} onChange={value => dispatch(setBloodSugar(value))}/>
-      </Flex>
+     <SliderContainer
+       value={bloodSugar}
+       onChange={value => dispatch(setBloodSugar(value))}
+       min={50} max={200} step={1}
+       label="Blood Sugar"
+     />
 
       <Flex style={styles.section}>
         <Text>Smoking</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={smoking}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setSmoking(value))} />
+          onChange={(value) => dispatch(setSmoking(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Alcohol</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={alcohol}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setAlcohol(value))} />
+          onChange={(value) => dispatch(setAlcohol(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Exercise</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={exercise}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setExercise(value))} />
+          onChange={(value) => dispatch(setExercise(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Diet</Text>
-        <NativeSelect
-          w={100}
-          data={["Poor", "Mixed", "Balanced", "Excellent"]}
-          onSelect={(value) => dispatch(setDiet(value))} />
+        <Radio.Group
+          value={diet}
+          onChange={(value) => dispatch(setDiet(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Poor" label="Poor" />
+            <Radio value="Mixed" label="Mixed" />
+            <Radio value="Balanced" label="Balanced" />
+          </Flex>
+        </Radio.Group>
       </Flex>
+
 
       <Box style={styles.dropdown}>
         <Flex style={styles.section}>
@@ -172,30 +232,47 @@ const AssessmentForm = () => {
         }
       </Box>
 
-      <Flex style={styles.section}>
-        <Text>Weight Management</Text>
-        <Switch checked={weightManagement} onChange={e => dispatch(toggleWeightManagement(e.currentTarget.checked))}/>
+      <Checkbox.Group
+        label="Goals"
+        description="Select your goals."
+        display={{ base: "none", md: "initial" }}
+      >
+        <Group mt="xs">
+          <Checkbox value="weightManagement" label="Weight Management" onChange={e => dispatch(toggleWeightManagement(e.currentTarget.checked))} />
+          <Checkbox value="stressReduction" label="Stress Reduction" onChange={e => dispatch(toggleStressReduction(e.currentTarget.checked))} />
+          <Checkbox value="improveBloodPressure" label="Improve Blood Pressure" onChange={e => dispatch(toggleImproveBloodPressure(e.currentTarget.checked))} />
+          <Checkbox value="preventDiabetes" label="Prevent Diabetes" onChange={e => dispatch(togglePreventDiabetes(e.currentTarget.checked))} />
+          <Checkbox value="increaseFitness" label="Increase Fitness" onChange={e => dispatch(toggleIncreaseFitness(e.currentTarget.checked))} />
+        </Group>
+      </Checkbox.Group>
+
+      <Flex direction="column" gap={32} display={{ md: "none"}}>
+        <Flex style={styles.section} >
+          <Text>Weight Management</Text>
+          <Switch checked={weightManagement} onChange={e => dispatch(toggleWeightManagement(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Stress Reduction</Text>
+          <Switch checked={stressReduction} onChange={e => dispatch(toggleStressReduction(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Improve Blood Pressure</Text>
+          <Switch checked={improveBloodPressure} onChange={e => dispatch(toggleImproveBloodPressure(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Prevent Diabetes</Text>
+          <Switch checked={preventDiabetes} onChange={e => dispatch(togglePreventDiabetes(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Increase Fitness</Text>
+          <Switch checked={increaseFitness} onChange={e => dispatch(toggleIncreaseFitness(e.currentTarget.checked))}/>
+        </Flex>
       </Flex>
 
-      <Flex style={styles.section}>
-        <Text>Stress Reduction</Text>
-        <Switch checked={stressReduction} onChange={e => dispatch(toggleStressReduction(e.currentTarget.checked))}/>
-      </Flex>
-
-      <Flex style={styles.section}>
-        <Text>Improve Blood Pressure</Text>
-        <Switch checked={improveBloodPressure} onChange={e => dispatch(toggleImproveBloodPressure(e.currentTarget.checked))}/>
-      </Flex>
-
-      <Flex style={styles.section}>
-        <Text>Prevent Diabetes</Text>
-        <Switch checked={preventDiabetes} onChange={e => dispatch(togglePreventDiabetes(e.currentTarget.checked))}/>
-      </Flex>
-
-      <Flex style={styles.section}>
-        <Text>Increase Fitness</Text>
-        <Switch checked={increaseFitness} onChange={e => dispatch(toggleIncreaseFitness(e.currentTarget.checked))}/>
-      </Flex>
 
       {loading ? <Loader /> : <Button onClick={handleSubmit}>Submit</Button>}
 
@@ -204,11 +281,6 @@ const AssessmentForm = () => {
 };
 
 const styles = {
-  container: {
-    margin: "auto",
-    gap: 16,
-    width: 800
-  },
   section: {
     alignItems: 'center',
     justifyContent: 'space-between',

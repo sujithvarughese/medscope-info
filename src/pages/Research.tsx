@@ -4,11 +4,11 @@ import {fetchConditionInfo, fetchDrugInfo} from "../features/globalSlice.ts";
 import Selector from "../components/Selector.tsx";
 import ConditionResults from "../components/ConditionResults.tsx";
 import DrugResults from "../components/news/DrugResults.tsx";
-import {Button, Loader} from "@mantine/core";
+import {BackgroundImage, Box, Button, Flex, Loader} from "@mantine/core";
+import bg from "../assets/bg-3.jpeg"
 
 
-
-const Lookup = () => {
+const Research = () => {
 
   const dispatch = useAppDispatch()
 
@@ -29,13 +29,19 @@ const Lookup = () => {
 
 
   return (
-    <div>
-      <Selector category="combined" onSelect={(item: string, group: string) => setValue({ item: item, group: group })} />
-      {loading ? <Loader />  : <Button onClick={handleSubmit}>Search</Button>}
-      {displayResults === "conditions" && <ConditionResults />}
-      {displayResults === "drugs" && <DrugResults />}
-    </div>
+    <BackgroundImage src={bg} h="100vh">
+      <Box p="xl" maw={900} mx="auto">
+        <Flex p="xl" bg="white" justify="center" align="center" w={600} mx="auto" style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
+          <Selector category="combined" onSelect={(item: string, group: string) => setValue({ item: item, group: group })} />
+          {loading ? <Loader />  : <Button onClick={handleSubmit}>Search</Button>}
+        </Flex>
+
+        {displayResults === "conditions" && <ConditionResults />}
+        {displayResults === "drugs" && <DrugResults />}
+      </Box>
+
+    </BackgroundImage>
   );
 };
 
-export default Lookup;
+export default Research;

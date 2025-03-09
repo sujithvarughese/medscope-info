@@ -70,7 +70,27 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
 
 
   return (
-    <AsyncSelect loadOptions={fetchAutoComplete} cacheOptions defaultOptions placeholder={placeholderText} onChange={(newValue) => { if (newValue) { const { group, value } = newValue; onSelect(value, group); } }} />
+    <AsyncSelect
+      loadOptions={fetchAutoComplete}
+      cacheOptions defaultOptions
+      placeholder={placeholderText}
+      onChange={(newValue) => {
+        if (newValue) {
+          const { group, value } = newValue; onSelect(value, group)
+        }
+      }}
+      styles={{
+        control: (provided) => ({
+          ...provided,
+          width: 300,
+          borderRadius: 6,
+          backgroundColor: "white",
+          boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+          border: "1px solid #e2e8f0",
+          zIndex: 0,
+        }),
+      }}
+    />
   );
 };
 

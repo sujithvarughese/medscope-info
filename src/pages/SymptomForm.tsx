@@ -10,10 +10,12 @@ import {
 } from "../features/globalSlice.ts";
 import {useNavigate} from "react-router";
 import Selector from "../components/Selector.tsx";
-import {ActionIcon, Box, Button, Flex, Loader, NativeSelect, Slider, Text} from "@mantine/core";
+import {ActionIcon, Box, Button, Flex, Loader, NativeSelect, Radio, Slider, Text} from "@mantine/core";
 import { IoMdRemoveCircle } from "react-icons/io";
 import { MdMale } from "react-icons/md";
 import { MdFemale } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
+import SliderContainer from "../components/SliderContainer.tsx";
 
 const SymptomForm = () => {
 
@@ -48,8 +50,12 @@ const SymptomForm = () => {
 
 
   return (
-    <Flex direction="column" align="center" gap={16} p={16} w="600" m="auto">
-      <Text>Symptom Form</Text>
+    <Flex direction="column" maw={600} gap={32} p="xl"  m="auto">
+      <Flex>
+        <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
+          <IoIosArrowBack />
+        </ActionIcon>
+      </Flex>
 
       <Box style={styles.dropdown}>
         <Flex style={styles.section}>
@@ -65,10 +71,12 @@ const SymptomForm = () => {
         }
       </Box>
 
-      <Flex style={styles.section}>
-        <Text>Age</Text>
-        <Slider min={18} max={120} step={1} value={age} w={200} onChange={value => dispatch(setAge(value))}/>
-      </Flex>
+      <SliderContainer
+        value={age}
+        onChange={value => dispatch(setAge(value))}
+        min={18} max={120} step={1}
+        label="Age"
+      />
 
       <Flex style={styles.section}>
         <Text style={styles.heading}>Sex</Text>
@@ -85,49 +93,76 @@ const SymptomForm = () => {
         </Text>
       </Flex>
 
-      <Flex style={styles.section}>
-        <Text>Height</Text>
-        <Slider min={18} max={96} step={1} value={height} w={200} onChange={value => dispatch(setHeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={height}
+        onChange={value => dispatch(setHeight(value))}
+        min={18} max={96} step={1}
+        label="Height"
+        displayValue={`${Math.floor(height / 12)}' ${height % 12}"`}
+      />
 
-      <Flex style={styles.section}>
-        <Text>Weight</Text>
-        <Slider min={50} max={500} step={1} value={weight} w={200} onChange={value => dispatch(setWeight(value))}/>
-      </Flex>
+      <SliderContainer
+        value={weight}
+        onChange={value => dispatch(setWeight(value))}
+        min={50} max={500} step={1}
+        label="Weight"
+        displayValue={`${weight}' lbs`}
+      />
 
       <Flex style={styles.section}>
         <Text>Smoking</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={smoking}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setSmoking(value))} />
+          onChange={(value) => dispatch(setSmoking(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Alcohol</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={alcohol}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setAlcohol(value))} />
+          onChange={(value) => dispatch(setAlcohol(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Exercise</Text>
-        <NativeSelect
-          w={100}
+        <Radio.Group
           value={exercise}
-          data={["Never", "Sometimes", "Often"]}
-          onSelect={(value) => dispatch(setExercise(value))} />
+          onChange={(value) => dispatch(setExercise(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Never" label="Never" />
+            <Radio value="Sometimes" label="Sometimes" />
+            <Radio value="Often" label="Often" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Flex style={styles.section}>
         <Text>Diet</Text>
-        <NativeSelect
-          w={100}
-          data={["Poor", "Mixed", "Balanced", "Excellent"]}
-          onSelect={(value) => dispatch(setDiet(value))} />
+        <Radio.Group
+          value={diet}
+          onChange={(value) => dispatch(setDiet(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Poor" label="Poor" />
+            <Radio value="Mixed" label="Mixed" />
+            <Radio value="Balanced" label="Balanced" />
+          </Flex>
+        </Radio.Group>
       </Flex>
 
       <Box style={styles.dropdown}>

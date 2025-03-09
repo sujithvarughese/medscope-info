@@ -17,7 +17,7 @@ const NewsTile = ({ source, title, description, url, urlToImage, date }: NewsTil
   const year = date.substring(0,4)
 
   return (
-    <Paper style={styles.button}>
+    <Paper style={styles.container}>
       <Image style={styles.image} src={urlToImage} alt="news-cover"/>
       <Box style={styles.textContainer} >
         <Anchor href={url} style={styles.title}>{title}</Anchor>
@@ -31,8 +31,7 @@ const NewsTile = ({ source, title, description, url, urlToImage, date }: NewsTil
 };
 
 const styles = {
-  button: {
-    display: "flex",
+  container: {
     marginRight: 12,
     backgroundColor: "white",
     elevation: 8,
