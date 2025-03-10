@@ -11,7 +11,6 @@ type PossibleConditions = {
   additionalInfo: string,
 }
 
-
 const SymptomResults = () => {
 
   const navigate = useNavigate()

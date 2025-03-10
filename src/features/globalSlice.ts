@@ -40,10 +40,8 @@ export type Props = {
     lifestyle: {
       smoking: "Never" | "Sometimes" | "Often",
       alcohol: "Never" | "Sometimes" | "Often",
-      activityLevel: "Sedentary" | "Moderate" | "Active",
       exercise: "Low" | "Moderate" | "High",
       diet: "Poor" | "Mixed" | "Balanced",
-      sleepHours: number,
       stressLevel: "Low" | "Moderate" | "High",
     },
     familyHistory: {
@@ -142,10 +140,8 @@ const initialState: Props = {
     lifestyle: {
       smoking: "Never",
       alcohol: "Never",
-      activityLevel: "Moderate",
       exercise: "Moderate",
       diet: "Balanced",
-      sleepHours: 8,
       stressLevel:"Moderate",
     },
     familyHistory: {
@@ -285,17 +281,11 @@ const globalSlice = createSlice({
     setAlcohol: (state, action: PayloadAction<any>) => {
       state.profile.lifestyle.alcohol = action.payload
     },
-    setActivityLevel: (state, action: PayloadAction<any>) => {
-      state.profile.lifestyle.activityLevel = action.payload
-    },
     setExercise: (state, action: PayloadAction<any>) => {
       state.profile.lifestyle.exercise = action.payload
     },
     setDiet: (state, action: PayloadAction<any>) => {
       state.profile.lifestyle.diet = action.payload
-    },
-    setSleepHours: (state, action: PayloadAction<number>) => {
-      state.profile.lifestyle.sleepHours = action.payload
     },
     setStressLevel: (state, action: PayloadAction<any>) => {
       state.profile.lifestyle.stressLevel = action.payload
@@ -662,10 +652,8 @@ export const {
   removeAllergies,
   setSmoking,
   setAlcohol,
-  setActivityLevel,
   setExercise,
   setDiet,
-  setSleepHours,
   setStressLevel,
   setDiabetes,
   setHeartDisease,

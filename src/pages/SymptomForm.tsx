@@ -6,7 +6,7 @@ import {
   addSymptoms,
   fetchSymptomAssessment, removeAllergies, removeCurrentMedications,
   removeMedicalHistory,
-  removeSymptoms, setAge, setAlcohol, setDiet, setExercise, setHeight, setSex, setSmoking, setWeight
+  removeSymptoms, setAge, setAlcohol, setDiet, setExercise, setHeight, setSex, setSmoking, setStressLevel, setWeight
 } from "../features/globalSlice.ts";
 import {useNavigate} from "react-router";
 import Selector from "../components/Selector.tsx";
@@ -31,10 +31,8 @@ const SymptomForm = () => {
   const weight = useAppSelector(state => state.global.profile.weight)
   const smoking = useAppSelector(state => state.global.profile.lifestyle.smoking)
   const alcohol = useAppSelector(state => state.global.profile.lifestyle.alcohol)
-  const activityLevel = useAppSelector(state => state.global.profile.lifestyle.activityLevel)
   const exercise = useAppSelector(state => state.global.profile.lifestyle.exercise)
   const diet = useAppSelector(state => state.global.profile.lifestyle.diet)
-  const sleepHours = useAppSelector(state => state.global.profile.lifestyle.sleepHours)
   const stressLevel = useAppSelector(state => state.global.profile.lifestyle.stressLevel)
 
   const medicalHistory = useAppSelector(state => state.global.profile.medicalHistory)
@@ -52,10 +50,11 @@ const SymptomForm = () => {
   return (
     <Flex direction="column" maw={600} gap={32} p="xl" m="auto" style={{ backgroundColor: "white"}}>
 
-      <Flex>
+      <Flex justify="space-between" align="center">
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </ActionIcon>
+        <Text style={{ fontSize: 32, fontWeight: 700 }}>Symptoms</Text>
       </Flex>
 
       <SliderContainer
@@ -151,6 +150,21 @@ const SymptomForm = () => {
           </Flex>
         </Radio.Group>
       </Flex>
+
+      <Flex style={styles.section}>
+        <Text>Stress Level</Text>
+        <Radio.Group
+          value={stressLevel}
+          onChange={(value) => dispatch(setStressLevel(value))}
+        >
+          <Flex gap={16}>
+            <Radio value="Low" label="Low" />
+            <Radio value="Moderate" label="Moderate" />
+            <Radio value="High" label="High" />
+          </Flex>
+        </Radio.Group>
+      </Flex>
+
 
       <Box style={styles.dropdown}>
         <Flex style={styles.section}>

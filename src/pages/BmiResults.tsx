@@ -27,7 +27,7 @@ const BmiResults = () => {
         </ActionIcon>
       </Flex>
 
-      <Text w={400} m="auto" style={{ fontSize: 36, fontWeight: 700 }}>BMI Results</Text>
+      <Text maw={400} m="auto" style={{ fontSize: 36, fontWeight: 700 }}>BMI Results</Text>
 
       <Flex direction="column" justify="center" align="center">
         <Text>Your body mass index (BMI) is</Text>
@@ -39,42 +39,42 @@ const BmiResults = () => {
         <Text style={{ fontWeight: 600 }}>{status}</Text>
       </Flex>
 
-      <Box w={400} m="auto">
+      <Box maw={400} m="auto">
         <Text style={{ fontWeight: 600 }}>Risk Factors</Text>
         <Text>{risk}</Text>
       </Box>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>BMI Prime</Text>
         <Text style={{ fontWeight: 700 }}>{prime}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Ponderal Index</Text>
         <Text style={{ fontWeight: 700 }}>{ponderalIndex}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Basal Metabolic Rate (BMR)</Text>
         <Text style={{ fontWeight: 700 }}>{bmr}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Waist-to-Hip Ratio</Text>
         <Text style={{ fontWeight: 700 }}>{waistHipRatio}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Waist-to-Hip Status</Text>
         <Text style={{ fontWeight: 700 }}>{waistHipStatus}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Waist-to-Height Ratio</Text>
         <Text style={{ fontWeight: 700 }}>{waistHeightRatio}</Text>
       </Flex>
 
-      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
+      <Flex justify="space-between" align="center" gap={32} w={320} m="auto">
         <Text>Waist-to-Height Status</Text>
         <Text style={{ fontWeight: 700 }}>{waistHeightStatus}</Text>
       </Flex>

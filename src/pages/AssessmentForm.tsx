@@ -18,10 +18,10 @@ import {
   setAge,
   setAlcohol,
   setBloodSugar,
-  setBmi,
+  setBmi, setCancer, setDiabetes,
   setDiastolicBloodPressure,
   setDiet,
-  setExercise,
+  setExercise, setHeartDisease,
   setHeight,
   setRestingHeartRate,
   setSex,
@@ -54,10 +54,8 @@ const AssessmentForm = () => {
 
   const smoking = useAppSelector(state => state.global.profile.lifestyle.smoking)
   const alcohol = useAppSelector(state => state.global.profile.lifestyle.alcohol)
-  const activityLevel = useAppSelector(state => state.global.profile.lifestyle.activityLevel)
   const exercise = useAppSelector(state => state.global.profile.lifestyle.exercise)
   const diet = useAppSelector(state => state.global.profile.lifestyle.diet)
-  const sleepHours = useAppSelector(state => state.global.profile.lifestyle.sleepHours)
   const stressLevel = useAppSelector(state => state.global.profile.lifestyle.stressLevel)
   const diabetesHistory = useAppSelector(state => state.global.profile.familyHistory.diabetes)
   const heartDiseaseHistory = useAppSelector(state => state.global.profile.familyHistory.heartDisease)
@@ -84,10 +82,11 @@ const AssessmentForm = () => {
   return (
     <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
 
-      <Flex>
+      <Flex justify="space-between" align="center">
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </ActionIcon>
+        <Text style={{ fontSize: 32, fontWeight: 700 }}>Health Assessment</Text>
       </Flex>
 
       <SliderContainer
@@ -233,6 +232,20 @@ const AssessmentForm = () => {
       </Box>
 
       <Checkbox.Group
+        label="Family History"
+        description="Select conditions that are present in your family."
+        display={{ base: "none", md: "initial" }}
+      >
+        <Group mt="xs">
+          <Checkbox value="diabetesHistory" label="Weight Management" onChange={e => dispatch(setDiabetes(e.currentTarget.checked))} />
+          <Checkbox value="heartDiseaseHistory" label="Stress Reduction" onChange={e => dispatch(setHeartDisease(e.currentTarget.checked))} />
+          <Checkbox value="cancerHistory" label="Improve Blood Pressure" onChange={e => dispatch(setCancer(e.currentTarget.checked))} />
+          <Checkbox value="preventDiabetes" label="Prevent Diabetes" onChange={e => dispatch(togglePreventDiabetes(e.currentTarget.checked))} />
+          <Checkbox value="increaseFitness" label="Increase Fitness" onChange={e => dispatch(toggleIncreaseFitness(e.currentTarget.checked))} />
+        </Group>
+      </Checkbox.Group>
+
+      <Checkbox.Group
         label="Goals"
         description="Select your goals."
         display={{ base: "none", md: "initial" }}
@@ -246,7 +259,26 @@ const AssessmentForm = () => {
         </Group>
       </Checkbox.Group>
 
-      <Flex direction="column" gap={32} display={{ md: "none"}}>
+      <Flex direction="column" gap={16} display={{ md: "none"}}>
+        <Text style={{ textAlign: "center" }}>Family History</Text>
+        <Flex style={styles.section} >
+          <Text>Diabetes</Text>
+          <Switch checked={diabetesHistory} onChange={e => dispatch(setDiabetes(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Heart Disease</Text>
+          <Switch checked={heartDiseaseHistory} onChange={e => dispatch(setHeartDisease(e.currentTarget.checked))}/>
+        </Flex>
+
+        <Flex style={styles.section}>
+          <Text>Cancer</Text>
+          <Switch checked={cancerHistory} onChange={e => dispatch(setCancer(e.currentTarget.checked))}/>
+        </Flex>
+      </Flex>
+
+      <Flex direction="column" gap={16} display={{ md: "none"}}>
+        <Text style={{ textAlign: "center" }}>Goals</Text>
         <Flex style={styles.section} >
           <Text>Weight Management</Text>
           <Switch checked={weightManagement} onChange={e => dispatch(toggleWeightManagement(e.currentTarget.checked))}/>

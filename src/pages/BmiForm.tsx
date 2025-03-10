@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "../utilities/hooks.ts";
 import {fetchBmiResults, setAge, setHeight, setHip, setSex, setWaist, setWeight} from "../features/globalSlice.ts";
 import {useNavigate} from "react-router";
-import {ActionIcon, Button, Flex, Loader, Slider, Text} from "@mantine/core";
+import {ActionIcon, Button, Flex, Loader, Text} from "@mantine/core";
 import {MdFemale, MdMale} from "react-icons/md";
 import SliderContainer from "../components/SliderContainer.tsx";
 import {IoIosArrowBack} from "react-icons/io";
@@ -17,8 +17,6 @@ const BmiForm = () => {
   const waist = useAppSelector(state => state.global.profile.waist)
   const hip = useAppSelector(state => state.global.profile.hip)
 
-
-
   const navigate = useNavigate()
   const handleSubmit = async () => {
     await dispatch(fetchBmiResults())
@@ -28,10 +26,11 @@ const BmiForm = () => {
   return (
     <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
 
-      <Flex>
+      <Flex justify="space-between" align="center">
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </ActionIcon>
+        <Text style={{ fontSize: 32, fontWeight: 700 }}>BMI Calculator</Text>
       </Flex>
 
       <SliderContainer

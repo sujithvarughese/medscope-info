@@ -1,12 +1,11 @@
 import {useAppSelector} from "../utilities/hooks.ts";
-import {ActionIcon, Box, Button, Flex, Loader, Text} from "@mantine/core";
+import {ActionIcon, Box, Flex, Text} from "@mantine/core";
 import {useNavigate} from "react-router";
 import {IoIosArrowBack} from "react-icons/io";
 
 const AssessmentResults = () => {
 
   const navigate = useNavigate()
-
 
   const overview: string = useAppSelector(state => state.global.results.healthAssessment.overview)
   const keyAreas: string[] = useAppSelector(state => state.global.results.healthAssessment.keyAreas)

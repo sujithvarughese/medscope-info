@@ -15,7 +15,7 @@ const DrugResults = () => {
 
 
   return (
-    <Flex direction="column" p="xl" bg="white" w={600} mx="auto" gap={16} style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
+    <Flex direction="column" p="xl" bg="white" maw={600} mx="auto" gap={16} style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
       <Box>
         <Text style={{ fontSize: 20, fontWeight: 700 }}>{drugInfo?.name.charAt(0).toUpperCase() + drugInfo?.name.substring(1)}</Text>
       </Box>
