@@ -4,6 +4,7 @@ import NewsTile from "./NewsTile";
 import {Box, Flex, Text, Title} from "@mantine/core";
 import FeaturedArticle from "./FeaturedArticle.tsx";
 import {Carousel} from "@mantine/carousel";
+import {api} from "../../utilities/api.ts";
 
 type articleProps = {
   source: { name: string };
@@ -21,18 +22,9 @@ const NewsSection = () => {
 
   const fetchNewsArticles = async () => {
     try {
-      const responseHealth = await axios("https://newsapi.org/v2/everything?q=health&pageSize=20", {
-        headers: { "X-Api-Key": import.meta.env.VITE_X_API_KEY }
-      })
-      const responseScience = await axios("https://newsapi.org/v2/everything?q=science&pageSize=20", {
-        headers: { "X-Api-Key": import.meta.env.VITE_X_API_KEY }
-      })
-      let { articles: healthArticles } = responseHealth.data
-      let { articles: scienceArticles } = responseScience.data
-      const filteredHealthArticles = healthArticles.filter((article: articleProps) => !!article["urlToImage"])
-      const filteredScienceArticles = scienceArticles.filter((article: articleProps) => !!article["urlToImage"])
-      setHealthArticles(filteredHealthArticles)
-      setScienceArticles(filteredScienceArticles)
+      const response = await api.get("/news")
+      setHealthArticles(response.data.filteredHealthArticles)
+      setScienceArticles(response.data.filteredScienceArticles)
     } catch (error) {
       console.log(error)
     }

@@ -505,8 +505,6 @@ export const logout = createAsyncThunk('global/logout', async () => {
   }
 })
 
-
-
 export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  () => {
   try {
     const response = await openai.post("", {
