@@ -305,8 +305,9 @@ const AssessmentForm = () => {
         </Flex>
       </Flex>
 
-
-      {loading ? <Loader /> : <Button onClick={handleSubmit}>Submit</Button>}
+      <Flex justify="center">
+        {loading ? <Loader type="bars" /> : <Button onClick={handleSubmit}>Submit</Button>}
+      </Flex>
 
     </Flex>
   );

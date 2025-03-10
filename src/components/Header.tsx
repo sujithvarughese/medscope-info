@@ -29,7 +29,7 @@ const Header = () => {
 
       {user ?
         <Flex gap={32} p={16} align="center">
-          <Box display={{ base: "none", md: "initial" }}>
+          <Box display={{ base: "none", sm: "initial" }}>
             <Link to="/" style={styles.link}>Home</Link>
           </Box>
           <Link to="/ai" style={styles.link}>AI</Link>

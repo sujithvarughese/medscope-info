@@ -11,7 +11,7 @@ const PreviewButton = () => {
   const loading = useAppSelector(state => state.global.loading)
 
   if (loading) {
-    return <Loader type="dots" size="xl" />
+    return <Loader type="bars" size="xl" />
   }
 
   return (
