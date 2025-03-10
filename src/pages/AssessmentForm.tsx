@@ -228,11 +228,9 @@ const AssessmentForm = () => {
         display={{ base: "none", md: "initial" }}
       >
         <Group mt="xs">
-          <Checkbox value="diabetesHistory" label="Weight Management" onChange={e => dispatch(setDiabetes(e.currentTarget.checked))} />
-          <Checkbox value="heartDiseaseHistory" label="Stress Reduction" onChange={e => dispatch(setHeartDisease(e.currentTarget.checked))} />
-          <Checkbox value="cancerHistory" label="Improve Blood Pressure" onChange={e => dispatch(setCancer(e.currentTarget.checked))} />
-          <Checkbox value="preventDiabetes" label="Prevent Diabetes" onChange={e => dispatch(togglePreventDiabetes(e.currentTarget.checked))} />
-          <Checkbox value="increaseFitness" label="Increase Fitness" onChange={e => dispatch(toggleIncreaseFitness(e.currentTarget.checked))} />
+          <Checkbox value="diabetesHistory" label="Diabetes" onChange={e => dispatch(setDiabetes(e.currentTarget.checked))} />
+          <Checkbox value="heartDiseaseHistory" label="Heart Disease" onChange={e => dispatch(setHeartDisease(e.currentTarget.checked))} />
+          <Checkbox value="cancerHistory" label="Cancer" onChange={e => dispatch(setCancer(e.currentTarget.checked))} />
         </Group>
       </Checkbox.Group>
 
