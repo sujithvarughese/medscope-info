@@ -24,7 +24,7 @@ const BmiForm = () => {
   }
 
   return (
-    <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
+    <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px", boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)"}} bg="white">
 
       <Flex justify="space-between" align="center">
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
@@ -87,7 +87,7 @@ const BmiForm = () => {
         displayValue={`${hip}"`}
       />
       <Flex justify="center">
-        {loading ? <Loader type="bars" /> : <Button onClick={handleSubmit}>Submit</Button>}
+        {loading ? <Loader type="bars" /> : <Button onClick={handleSubmit} bg="#20B2AA">Submit</Button>}
       </Flex>
 
     </Flex>

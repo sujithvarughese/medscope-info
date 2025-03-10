@@ -1,4 +1,4 @@
-import {ActionIcon, AppShellHeader, Box, Button, Flex, Group, Image, UnstyledButton} from "@mantine/core";
+import {ActionIcon, AppShellHeader, Box, Button, Flex, Group, Image, Text, UnstyledButton} from "@mantine/core";
 import logo from "../assets/icon-transparent.png"
 import {Link, useNavigate} from "react-router";
 import Login from "./Login.tsx";
@@ -30,12 +30,12 @@ const Header = () => {
       {user ?
         <Flex gap={32} p={16} align="center">
           <Box display={{ base: "none", sm: "initial" }}>
-            <Link to="/" style={styles.link}>Home</Link>
+            <Link to="/" style={styles.link}><Text c="cyan.6">Home</Text></Link>
           </Box>
-          <Link to="/ai" style={styles.link}>AI</Link>
-          <Link to="/research" style={styles.link}>Research</Link>
-          <Link to="/about" style={styles.link}>About</Link>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Link to="/ai" style={styles.link} ><Text c="cyan.6">AI</Text></Link>
+          <Link to="/research" style={styles.link}><Text c="cyan.6">Research</Text></Link>
+          <Link to="/about" style={styles.link}><Text c="cyan.6">About</Text></Link>
+          <Button onClick={handleLogout} bg="#20B2AA">Logout</Button>
         </Flex>
         :
         <Login openRegisterModal={openRegisterModal}/>
@@ -54,6 +54,7 @@ const styles = {
     textDecoration: "none",
     fontWeight: 600,
     fontSize: 16,
+    color: "black"
   }
 };
 

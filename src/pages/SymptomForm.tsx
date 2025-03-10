@@ -48,7 +48,7 @@ const SymptomForm = () => {
 
 
   return (
-    <Flex direction="column" maw={600} gap={32} p="xl" m="auto" style={{ backgroundColor: "white"}}>
+    <Flex direction="column" maw={600} gap={32} p="xl" m="auto" bg="white" style={{ borderRadius: "12px", boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)"}}>
 
       <Flex justify="space-between" align="center">
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
@@ -67,14 +67,14 @@ const SymptomForm = () => {
       <Flex style={styles.section}>
         <Text>Sex</Text>
         <Box style={styles.selections}>
-          <Button style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
+          <Button w={120} variant="default" style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
             <MdMale />
-            <Text>Male</Text>
+            <Text p={6}>Male</Text>
           </Button>
 
-          <Button style={[styles.selection, sex === "female" && styles.selected]} onClick={() => dispatch(setSex("female"))}>
+          <Button w={120} variant="default" style={[styles.selection, sex === "female" && styles.selected]} onClick={() => dispatch(setSex("female"))}>
             <MdFemale />
-            <Text>Female</Text>
+            <Text p={4}>Female</Text>
           </Button>
         </Box>
       </Flex>
@@ -220,7 +220,7 @@ const SymptomForm = () => {
       </Box>
 
       <Flex justify="center">
-        {loading ? <Loader type="bars"/> : <Button onClick={handleSubmit}>Submit</Button>}
+        {loading ? <Loader type="bars"/> : <Button onClick={handleSubmit} bg="#20B2AA">Submit</Button>}
       </Flex>
 
     </Flex>
@@ -248,7 +248,7 @@ const styles = {
 
   },
   selected: {
-    backgroundColor: "blue",
+    backgroundColor: "#20B2AA",
     color: "white",
   }
 };

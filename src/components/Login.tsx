@@ -51,7 +51,7 @@ const Login = ({ openRegisterModal }: Props) => {
           </Button>
 
           <Button display={{ md: "none" }} size="xs" type="submit">Sign In</Button>
-          <Button display={{ base: "none", md: "initial" }} size="sm" type="submit">Sign In</Button>
+          <Button display={{ base: "none", md: "initial" }} size="sm" type="submit" bg="cyan.6">Sign In</Button>
         </Flex>
 
       </Flex>
