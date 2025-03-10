@@ -1,7 +1,7 @@
 
 const prod = {
   url: {
-    API_URL: "https://medscope-3675a43fd963.herokuapp.com/ap1/v1"
+    API_URL: "https://medscope-3675a43fd963.herokuapp.com/api/v1"
   }
 };
 
