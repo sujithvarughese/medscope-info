@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
 import {api, openai} from "../utilities/api";
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "../context/actions.ts";
 
 type PossibleConditions = {
   condition: string,
