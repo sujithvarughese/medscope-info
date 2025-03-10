@@ -22,8 +22,7 @@ const Header = () => {
 
 
   return (
-
-    <Flex align="center" justify="space-between" p={{ base: 2, md: 16 }}>
+    <Flex align="center" justify="space-between" p={{ base: 2, md: 16 }} pb={16}>
       <ActionIcon variant="subtle" w={90} h={90} onClick={() => navigate("/")}>
         <Image src={logo} alt="MedScope" />
       </ActionIcon>

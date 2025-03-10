@@ -9,22 +9,19 @@ const Landing = () => {
 
 
   return (
-    <Box maw={1920} mx="auto">
-
-      <Flex w="100%" justify="center">
-        <PreviewButton />
-      </Flex>
-
-
-      <Flex direction={{ base: "column", sm: "row"}} justify="space-around" align="center">
-        <Box>
+    <Box maw={1920} mx="auto" pt={32}>
+      <Flex direction={{ base: "column-reverse", sm: "row"}} justify="space-evenly" align="center">
+        <Flex direction="column" align={{ base: "center", md: "flex-start" }}>
           <Flex>
             <Text c="gray" style={{ fontSize: 36, fontWeight: 700 }}>Med</Text>
             <Text c="blue" style={{ fontSize: 36, fontWeight: 700 }}>Scope</Text>
           </Flex>
-          <Text style={{ fontWeight: 600 }}>Your Health, Your Knowledge, Your Control</Text>
-        </Box>
-        <Image src={bg} alt="Landing Page" w={{ base: "100%", sm: "50%" }}/>
+          <Text style={{ fontWeight: 600 }} pb="xl">Your Health, Your Knowledge, Your Control</Text>
+          <PreviewButton />
+        </Flex>
+
+        <Image src={bg} alt="Landing Page" w={{ base: "90%", sm: "50%" }} style={{ borderRadius: 12 }}/>
+
       </Flex>
 
     </Box>

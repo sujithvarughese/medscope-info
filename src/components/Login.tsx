@@ -25,10 +25,9 @@ const Login = ({ openRegisterModal }: Props) => {
   return (
 
     <form onSubmit={form.onSubmit((values) => dispatch(login(values)))}>
-      <Flex>
-        <Flex direction="column" gap={8}>
+      <Flex pt={{ base: "xs", md: 0 }} >
+        <Flex direction="column" gap={8} pt="xs">
           <TextInput
-            mt="sm"
             placeholder="Email"
             key={form.key('email')}
             {...form.getInputProps('email')}
@@ -42,21 +41,17 @@ const Login = ({ openRegisterModal }: Props) => {
           />
         </Flex>
 
-        <Flex direction="column" align="center" justify="space-around">
-          <Button display={{ md: "none" }}  size="xs" variant="subtle" onClick={openRegisterModal}>
+        <Flex direction="column" align="center" justify="flex-end" gap={12}>
+
+          <Button variant="subtle" onClick={openRegisterModal}>
             <Flex direction="column">
-              <Text size="xs" display={{ base: "none", md: "initial" }}>Don't have an account?</Text>
+              <Text size="xs">Don't have an account?</Text>
               Register
             </Flex>
           </Button>
-          <Button display={{ base: "none", md: "initial" }} size="sm" variant="subtle" onClick={openRegisterModal}>
-            <Flex direction="column">
-              <Text size="xs" display={{ base: "none", md: "initial" }}>Don't have an account?</Text>
-              Register
-            </Flex>
-          </Button>
-          <Button display={{ md: "none" }} size="xs" type="submit">Submit</Button>
-          <Button display={{ base: "none", md: "initial" }} size="sm" type="submit">Submit</Button>
+
+          <Button display={{ md: "none" }} size="xs" type="submit">Sign In</Button>
+          <Button display={{ base: "none", md: "initial" }} size="sm" type="submit">Sign In</Button>
         </Flex>
 
       </Flex>
