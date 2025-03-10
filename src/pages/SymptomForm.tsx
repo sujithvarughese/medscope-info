@@ -50,26 +50,13 @@ const SymptomForm = () => {
 
 
   return (
-    <Flex direction="column" maw={600} gap={32} p="xl"  m="auto">
+    <Flex direction="column" maw={600} gap={32} p="xl" m="auto" style={{ backgroundColor: "white"}}>
+
       <Flex>
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </ActionIcon>
       </Flex>
-
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Symptoms</Text>
-          <Selector category="conditions" onSelect={(item) => dispatch(addSymptoms(item))} />
-        </Flex>
-
-        {symptoms.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeSymptoms(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
 
       <SliderContainer
         value={age}
@@ -79,8 +66,8 @@ const SymptomForm = () => {
       />
 
       <Flex style={styles.section}>
-        <Text style={styles.heading}>Sex</Text>
-        <Text style={styles.selections}>
+        <Text>Sex</Text>
+        <Box style={styles.selections}>
           <Button style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
             <MdMale />
             <Text>Male</Text>
@@ -90,7 +77,7 @@ const SymptomForm = () => {
             <MdFemale />
             <Text>Female</Text>
           </Button>
-        </Text>
+        </Box>
       </Flex>
 
       <SliderContainer
@@ -164,6 +151,20 @@ const SymptomForm = () => {
           </Flex>
         </Radio.Group>
       </Flex>
+
+      <Box style={styles.dropdown}>
+        <Flex style={styles.section}>
+          <Text>Symptoms</Text>
+          <Selector category="conditions" onSelect={(item) => dispatch(addSymptoms(item))} />
+        </Flex>
+
+        {symptoms.map((item, index) =>
+          <Box key={index}>
+            <Text>{item}</Text>
+            <ActionIcon onClick={() => dispatch(removeSymptoms(item))}><IoMdRemoveCircle /></ActionIcon>
+          </Box>)
+        }
+      </Box>
 
       <Box style={styles.dropdown}>
         <Flex style={styles.section}>

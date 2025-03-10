@@ -82,7 +82,7 @@ const AssessmentForm = () => {
   }
 
   return (
-    <Flex direction="column" maw={600} gap={32} p="xl" m="auto">
+    <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
 
       <Flex>
         <ActionIcon variant="gradient" onClick={() => navigate(-1)}>

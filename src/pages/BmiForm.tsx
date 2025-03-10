@@ -1,9 +1,10 @@
 import {useAppDispatch, useAppSelector} from "../utilities/hooks.ts";
 import {fetchBmiResults, setAge, setHeight, setHip, setSex, setWaist, setWeight} from "../features/globalSlice.ts";
 import {useNavigate} from "react-router";
-import {Button, Flex, Loader, Slider, Text} from "@mantine/core";
+import {ActionIcon, Button, Flex, Loader, Slider, Text} from "@mantine/core";
 import {MdFemale, MdMale} from "react-icons/md";
 import SliderContainer from "../components/SliderContainer.tsx";
+import {IoIosArrowBack} from "react-icons/io";
 
 const BmiForm = () => {
 
@@ -26,6 +27,12 @@ const BmiForm = () => {
 
   return (
     <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
+
+      <Flex>
+        <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
+          <IoIosArrowBack />
+        </ActionIcon>
+      </Flex>
 
       <SliderContainer
         value={age}

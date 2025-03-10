@@ -18,11 +18,11 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
 
   useEffect(() => {
     if (category === "conditions") {
-      setPlaceholderText("e.g. diabetes, headache, etc.")
+      setPlaceholderText("e.g. diabetes, headache")
     } else if (category === "drugs") {
-      setPlaceholderText("e.g. ibuprofen, aspirin, etc.")
+      setPlaceholderText("e.g. ibuprofen, aspirin")
     } else {
-      setPlaceholderText("e.g. headache, ibuprofen, etc.")
+      setPlaceholderText("e.g. headache, ibuprofen")
     }
   }, [category]);
 
@@ -86,7 +86,7 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
           backgroundColor: "white",
           boxShadow: "0 0 10px rgba(0,0,0,0.1)",
           border: "1px solid #e2e8f0",
-          zIndex: 0,
+          width: "240px",
         }),
       }}
     />

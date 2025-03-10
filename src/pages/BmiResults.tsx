@@ -1,7 +1,11 @@
-import {Box, Text} from "@mantine/core";
+import {ActionIcon, Box, Flex, Text} from "@mantine/core";
 import {useAppSelector} from "../utilities/hooks.ts";
+import {IoIosArrowBack} from "react-icons/io";
+import {useNavigate} from "react-router";
 
 const BmiResults = () => {
+
+  const navigate = useNavigate()
 
   const bmi = useAppSelector(state => state.global.results.bmi.bmi)
   const status = useAppSelector(state => state.global.results.bmi.status)
@@ -15,98 +19,68 @@ const BmiResults = () => {
   const waistHeightStatus = useAppSelector(state => state.global.results.bmi.waistHeightStatus)
 
   return (
-    <Box>
-      <Text style={styles.title}>BMI Results</Text>
+    <Flex direction="column" maw={600} gap={32} p="xl" m="auto" style={{ backgroundColor: "white"}}>
 
-      <Box style={styles.bmiContainer}>
+      <Flex>
+        <ActionIcon variant="gradient" onClick={() => navigate(-1)}>
+          <IoIosArrowBack />
+        </ActionIcon>
+      </Flex>
+
+      <Text w={400} m="auto" style={{ fontSize: 36, fontWeight: 700 }}>BMI Results</Text>
+
+      <Flex direction="column" justify="center" align="center">
         <Text>Your body mass index (BMI) is</Text>
-        <Text style={styles.bmi}>{bmi}</Text>
-      </Box>
+        <Text style={{ fontSize: 28, fontWeight: 700 }}>{bmi}</Text>
+      </Flex>
 
-      <Box>
-        <Text style={styles.status}>Status: {status}</Text>
-      </Box>
+      <Flex justify="center" align="center" gap={4}>
+        <Text>Status: </Text>
+        <Text style={{ fontWeight: 600 }}>{status}</Text>
+      </Flex>
 
-      <Box style={styles.risksContainer}>
-        <Text style={styles.risksHeading}>Risk Factors</Text>
+      <Box w={400} m="auto">
+        <Text style={{ fontWeight: 600 }}>Risk Factors</Text>
         <Text>{risk}</Text>
       </Box>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>BMI Prime</Text>
-        <Text style={styles.result}>{prime}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{prime}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Ponderal Index</Text>
-        <Text style={styles.result}>{ponderalIndex}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{ponderalIndex}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Basal Metabolic Rate (BMR)</Text>
-        <Text style={styles.result}>{bmr}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{bmr}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Waist-to-Hip Ratio</Text>
-        <Text style={styles.result}>{waistHipRatio}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{waistHipRatio}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Waist-to-Hip Status</Text>
-        <Text style={styles.result}>{waistHipStatus}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{waistHipStatus}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Waist-to-Height Ratio</Text>
-        <Text style={styles.result}>{waistHeightRatio}</Text>
-      </Box>
+        <Text style={{ fontWeight: 700 }}>{waistHeightRatio}</Text>
+      </Flex>
 
-      <Box style={styles.resultContainer}>
+      <Flex justify="space-between" align="center" gap={32} w={400} m="auto">
         <Text>Waist-to-Height Status</Text>
-        <Text style={styles.result}>{waistHeightStatus}</Text>
-      </Box>
-    </Box>
+        <Text style={{ fontWeight: 700 }}>{waistHeightStatus}</Text>
+      </Flex>
+
+    </Flex>
   );
 };
-const styles = {
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    gap: 16,
-    backgroundColor: '#fff',
-    padding: 32,
-  },
-  title: {
-    fontWeight: 'bold',
-
-  },
-  bmiContainer: {
-    alignItems: 'center',
-  },
-  bmi: {
-    fontSize: 32,
-    fontWeight: 'bold',
-  },
-  status: {
-  },
-  risksHeading: {
-    fontSize: 16,
-    fontWeight: 600,
-  },
-  risksContainer: {
-    gap: 4,
-    padding: 16,
-  },
-  resultContainer: {
-    justifyContent: 'space-between',
-  },
-  heading: {
-
-  },
-  result: {
-    fontWeight: 'bold',
-  }
-}
 
 export default BmiResults;

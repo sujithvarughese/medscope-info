@@ -38,35 +38,4 @@ const SliderContainer: React.FC<Props> = (
   );
 };
 
-const styles = {
-  rowContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-  columnContainer: {
-    alignItems: "center",
-    gap: 2,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4
-  },
-  column: {
-    alignItems: "center",
-    gap: 2,
-  },
-  label: {
-    fontSize: 16,
-  },
-  value: {
-    fontSize: 18,
-    fontWeight: "700"
-  },
-  slider: {
-    width: 240,
-  }
-}
 export default SliderContainer;
