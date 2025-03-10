@@ -214,19 +214,13 @@ const AssessmentForm = () => {
         </Radio.Group>
       </Flex>
 
-
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Medical History</Text>
-          <Selector category="conditions" onSelect={(item) => dispatch(addMedicalHistory(item))} />
-        </Flex>
-        {medicalHistory.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeMedicalHistory(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
+      <Selector
+        category="conditions"
+        onSelect={(item) => dispatch(addMedicalHistory(item))}
+        label="Medical History"
+        list={medicalHistory}
+        onRemove={(item) => dispatch(removeMedicalHistory(item))}
+      />
 
       <Checkbox.Group
         label="Family History"

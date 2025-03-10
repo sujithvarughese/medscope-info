@@ -16,6 +16,7 @@ import { MdMale } from "react-icons/md";
 import { MdFemale } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import SliderContainer from "../components/SliderContainer.tsx";
+import {useEffect} from "react";
 
 const SymptomForm = () => {
 
@@ -46,6 +47,9 @@ const SymptomForm = () => {
   }
 
 
+  useEffect(() => {
+    console.log(symptoms)
+  }, [symptoms])
 
   return (
     <Flex direction="column" maw={600} gap={32} p="xl" m="auto" bg="white" style={{ borderRadius: "12px", boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)"}}>
@@ -165,59 +169,37 @@ const SymptomForm = () => {
         </Radio.Group>
       </Flex>
 
+      <Selector
+        category="conditions"
+        onSelect={(item) => dispatch(addSymptoms(item))}
+        label="Symptoms"
+        list={symptoms}
+        onRemove={item => dispatch(removeSymptoms(item))}
+      />
 
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Symptoms</Text>
-          <Selector category="conditions" onSelect={(item) => dispatch(addSymptoms(item))} />
-        </Flex>
+      <Selector
+        category="conditions"
+        onSelect={(item) => dispatch(addMedicalHistory(item))}
+        label="Medical History"
+        list={medicalHistory}
+        onRemove={item => dispatch(removeMedicalHistory(item))}
+      />
 
-        {symptoms.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeSymptoms(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
+      <Selector
+        category="drugs"
+        onSelect={(item) => dispatch(addCurrentMedications(item))}
+        label="Current Medications"
+        list={currentMedications}
+        onRemove={item => dispatch(removeCurrentMedications(item))}
+      />
 
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Medical History</Text>
-          <Selector category="conditions" onSelect={(item) => dispatch(addMedicalHistory(item))} />
-        </Flex>
-        {medicalHistory.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeMedicalHistory(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
-
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Current Medications</Text>
-          <Selector category="drugs" onSelect={(item) => dispatch(addCurrentMedications(item))} />
-        </Flex>
-        {currentMedications.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeCurrentMedications(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
-
-      <Box style={styles.dropdown}>
-        <Flex style={styles.section}>
-          <Text>Allergies</Text>
-          <Selector category="drugs" onSelect={(item) => dispatch(addAllergies(item))} />
-        </Flex>
-        {allergies.map((item, index) =>
-          <Box key={index}>
-            <Text>{item}</Text>
-            <ActionIcon onClick={() => dispatch(removeAllergies(item))}><IoMdRemoveCircle /></ActionIcon>
-          </Box>)
-        }
-      </Box>
+      <Selector
+        category="conditions"
+        onSelect={(item) => dispatch(addAllergies(item))}
+        label="Allergies"
+        list={allergies}
+        onRemove={item => dispatch(removeAllergies(item))}
+      />
 
       <Flex justify="center">
         {loading ? <Loader type="bars"/> : <Button onClick={handleSubmit} bg="#20B2AA">Submit</Button>}
