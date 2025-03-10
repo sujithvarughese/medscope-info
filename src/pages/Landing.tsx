@@ -2,13 +2,8 @@ import {Box, Flex, Image, Text} from "@mantine/core";
 import bg from "../assets/bg-landing.jpeg"
 import img2 from "../assets/bg-landing-3.jpeg"
 import PreviewButton from "../components/PreviewButton.tsx";
-import {useDisclosure} from "@mantine/hooks";
-import RegisterModal from "../components/RegisterModal.tsx";
-import Login from "../components/Login.tsx";
+
 const Landing = () => {
-
-
-
   return (
     <Flex direction="column" maw={1920} mx="auto" p={32} gap={36} m="auto">
 
@@ -45,7 +40,7 @@ const Landing = () => {
         <Image src={img2} alt="Landing Page" w={{ base: "90%", sm: "50%" }} style={{ borderRadius: 12 }} />
         <Flex direction="column" p={16}>
           <Text style={{ fontWeight: 700, fontSize: 24, textAlign: "center", padding: 16 }}>Stay Informed, Stay Healthy</Text>
-          <Text style={{ padding: 16 }}>MedScope empowers you with reliable medical information and self-assessment tools to help you make better health decisions. Whether you're managing a condition or simply tracking your well-being, MedScope is your trusted companion.</Text>
+          <Text style={{ padding: 16, fontWeight: 500 }}>MedScope empowers you with reliable medical information and self-assessment tools to help you make better health decisions. Whether you're managing a condition or simply tracking your well-being, MedScope is your trusted companion.</Text>
         </Flex>
       </Flex>
     </Flex>

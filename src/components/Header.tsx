@@ -1,4 +1,4 @@
-import {ActionIcon, AppShellHeader, Box, Button, Flex, Group, Image, Text, UnstyledButton} from "@mantine/core";
+import {ActionIcon, Box, Button, Flex, Image, Text} from "@mantine/core";
 import logo from "../assets/icon-transparent.png"
 import {Link, useNavigate} from "react-router";
 import Login from "./Login.tsx";

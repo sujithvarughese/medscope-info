@@ -1,7 +1,6 @@
 import NewsSection from "../components/news/NewsSection.tsx";
 import HealthTip from "../components/news/HealthTip.tsx";
-import bg from "../assets/bg-2.jpeg"
-import {BackgroundImage, Box, Flex} from "@mantine/core";
+import {Flex} from "@mantine/core";
 
 const Home = () => {
   return (

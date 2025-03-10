@@ -1,6 +1,4 @@
-import {AppShell} from "@mantine/core";
-import Header from "./components/Header.tsx";
-import {HashRouter, Outlet, Route, Routes} from "react-router";
+import {HashRouter, Route, Routes} from "react-router";
 import Home from "./pages/Home.tsx";
 import AI from "./pages/AI.tsx";
 import SymptomForm from "./pages/SymptomForm.tsx";
@@ -16,7 +14,7 @@ import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import Layout from "./components/Layout.tsx";
 import Landing from "./pages/Landing.tsx";
 import {useAppSelector} from "./utilities/hooks.ts";
-import {useEffect} from "react";
+
 
 const App = () => {
 

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from "axios";
 import {api, openai} from "../utilities/api";
 
 type PossibleConditions = {

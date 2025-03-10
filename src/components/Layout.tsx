@@ -1,4 +1,3 @@
-
 import {AppShell, BackgroundImage} from "@mantine/core";
 import Header from "../components/Header.tsx";
 import {Outlet, useNavigate} from "react-router";

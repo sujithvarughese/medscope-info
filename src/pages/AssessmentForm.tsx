@@ -6,9 +6,7 @@ import {
   Checkbox,
   Flex, Group,
   Loader,
-  NativeSelect,
   Radio,
-  Slider,
   Switch,
   Text
 } from "@mantine/core";
@@ -38,7 +36,6 @@ import {MdFemale, MdMale} from "react-icons/md";
 import Selector from "../components/Selector.tsx";
 import {IoIosArrowBack, IoMdRemoveCircle} from "react-icons/io";
 import {useNavigate} from "react-router";
-import {useEffect} from "react";
 import SliderContainer from "../components/SliderContainer.tsx";
 
 const AssessmentForm = () => {

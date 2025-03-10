@@ -1,7 +1,6 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
 import NewsTile from "./NewsTile";
-import {Box, Flex, Text, Title} from "@mantine/core";
+import {Flex, Text, Title} from "@mantine/core";
 import FeaturedArticle from "./FeaturedArticle.tsx";
 import {Carousel} from "@mantine/carousel";
 import {api} from "../../utilities/api.ts";

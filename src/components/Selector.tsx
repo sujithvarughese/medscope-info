@@ -68,7 +68,6 @@ const Selector = ({ category, onSelect } : SelectorModalProps ) => {
     return [];
   }
 
-
   return (
     <AsyncSelect
       loadOptions={fetchAutoComplete}

@@ -10,7 +10,7 @@ import {
 } from "../features/globalSlice.ts";
 import {useNavigate} from "react-router";
 import Selector from "../components/Selector.tsx";
-import {ActionIcon, Box, Button, Flex, Loader, NativeSelect, Radio, Slider, Text} from "@mantine/core";
+import {ActionIcon, Box, Button, Flex, Loader, Radio, Text} from "@mantine/core";
 import { IoMdRemoveCircle } from "react-icons/io";
 import { MdMale } from "react-icons/md";
 import { MdFemale } from "react-icons/md";
@@ -222,7 +222,6 @@ const SymptomForm = () => {
       <Flex justify="center">
         {loading ? <Loader type="bars"/> : <Button onClick={handleSubmit} bg="#20B2AA">Submit</Button>}
       </Flex>
-
     </Flex>
   );
 };
