@@ -656,25 +656,16 @@ export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRe
 export const fetchBmiResults = createAsyncThunk('global/fetchBmiResults', async (_payload, { getState }) => {
   const state: any = getState()
   console.log("fetching bmi results...")
-  const options = {
-    method: 'POST',
-    url: 'https://bmi.p.rapidapi.com/v1/bmi',
-    headers: {
-      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-      'x-rapidapi-host': 'bmi.p.rapidapi.com',
-      'Content-Type': 'application/json',
-    },
-    data: {
-      weight: { value: state.global.profile.weight.toString(), unit: 'lb' },
-      height: { value: state.global.profile.height.toString(), unit: 'in' },
-      sex: state.global.profile.sex.charAt(0),
-      age: state.global.profile.age.toString(),
-      waist: state.global.profile.waist.toString(),
-      hip: state.global.profile.hip.toString()
-    }
-  };
+  const data = {
+    weight: { value: state.global.profile.weight.toString(), unit: 'lb' },
+    height: { value: state.global.profile.height.toString(), unit: 'in' },
+    sex: state.global.profile.sex.charAt(0),
+    age: state.global.profile.age.toString(),
+    waist: state.global.profile.waist.toString(),
+    hip: state.global.profile.hip.toString()
+  }
   try {
-    const response = await axios.request(options);
+    const response = await api.post("/ai/bmi", data);
     console.log(response.data)
     return response.data
   } catch (error) {

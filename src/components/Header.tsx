@@ -15,6 +15,11 @@ const Header = () => {
 
   const [registerModalOpened, { open: openRegisterModal, close: closeRegisterModal }] = useDisclosure(false);
 
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate("/")
+  }
+
 
   return (
 
@@ -31,7 +36,7 @@ const Header = () => {
           <Link to="/ai" style={styles.link}>AI Assessment</Link>
           <Link to="/research" style={styles.link}>Research</Link>
           <Link to="/about" style={styles.link}>About</Link>
-          <Button onClick={() => dispatch(logout())}>Logout</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Flex>
         :
         <Login openRegisterModal={openRegisterModal}/>

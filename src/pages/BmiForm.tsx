@@ -25,7 +25,7 @@ const BmiForm = () => {
   }
 
   return (
-    <Flex direction="column" maw={600} p="xl" m="auto" gap={32}>
+    <Flex direction="column" maw={600} p="xl" m="auto" gap={32} style={{ borderRadius: "12px "}} bg="white">
 
       <SliderContainer
         value={age}

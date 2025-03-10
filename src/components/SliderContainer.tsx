@@ -22,7 +22,7 @@ const SliderContainer: React.FC<Props> = (
     label,
   }) => {
   return (
-    <Flex justify="space-between" align="center" w="100%" style={{ zIndex: -10 }}>
+    <Flex justify="space-between" align="center" w="100%">
       <Text>{label}</Text>
       <Flex gap={16} align="center">
         <Text style={{ fontWeight: 600 }}>{displayValue || value}</Text>
