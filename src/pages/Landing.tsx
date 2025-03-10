@@ -38,7 +38,7 @@ const Landing = () => {
 
       <Flex direction={{ base: "column-reverse", sm: "row"}} justify="space-evenly" align="center">
         <Image src={img2} alt="Landing Page" w={{ base: "90%", sm: "50%" }} style={{ borderRadius: 12 }} />
-        <Flex direction="column" p={16}>
+        <Flex direction="column" p={16} maw={500}>
           <Text style={{ fontWeight: 700, fontSize: 24, textAlign: "center", padding: 16 }}>Stay Informed, Stay Healthy</Text>
           <Text style={{ padding: 16, fontWeight: 500 }}>MedScope empowers you with reliable medical information and self-assessment tools to help you make better health decisions. Whether you're managing a condition or simply tracking your well-being, MedScope is your trusted companion.</Text>
         </Flex>
