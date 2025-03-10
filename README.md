@@ -1,54 +1,64 @@
-# React + TypeScript + Vite
+# MedScope
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MedScope is a comprehensive health and medical information app designed to give users quick and reliable access to **drug information**, **medical conditions**, **symptom-based assessments**, and **basic health metrics** (e.g., BMI). By integrating multiple data sources and intelligent algorithms, MedScope helps users make more informed health-related decisions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+1. **Drug Information**  
+   Quickly look up details about medications, including uses, side effects, contraindications, and dosage recommendations.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Condition Lookup**  
+   Access detailed information on various medical conditions, including symptoms, treatment options, and risk factors.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. **Symptom Checker**  
+   Enter your symptoms to receive possible condition suggestions, providing a starting point for further medical exploration.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4. **Health Assessment**  
+   Create a personalized profile and receive tailored health assessments, helping you monitor your overall wellness.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+5. **BMI & Metrics**  
+   Easily calculate your BMI and track other useful health metrics to manage and maintain your fitness and health goals.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## How It Works
+
+1. **Create a Profile**  
+   Sign up and fill out your basic health and demographic details to receive personalized health insights.
+
+2. **Input Your Symptoms**  
+   Enter any symptom or combination of symptoms, and MedScope will suggest potential conditions to explore.
+
+3. **Browse Drugs and Conditions**  
+   Search for a specific medication or condition to view details, possible side effects, and recommended guidelines.
+
+4. **Get Health Insights**  
+   View personalized assessments and metrics like your BMI to stay aware of your overall health.
+
+5. **Stay Updated**  
+   Receive prompt updates and accurate information as MedScope integrates with trusted medical databases for the latest knowledge.
+
+---
+
+## Technologies Used
+
+- **Front End:** [React](https://react.dev) and [React Native](https://reactnative.dev/)
+- **Back End:** [Node.js](https://nodejs.org/) and [Express.js](https://expressjs.com/)
+- **Database:** [MongoDB](https://www.mongodb.com/)
+- **Integration:** APIs for medical data and analytics
+
+---
+
+## Disclaimer
+
+MedScope is intended for informational purposes only. It should not replace professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified health provider with any questions you may have regarding a medical condition.
+
+---
+
+## Contact
+
+For more information, feedback, or support, please contact the MedScope team at [support@medscopeapp.com](mailto:support@medscopeapp.com).
+
+Thank you for choosing **MedScope**—your personal gateway to reliable health and medical information!
