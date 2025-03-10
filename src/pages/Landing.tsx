@@ -3,6 +3,7 @@ import bg from "../assets/bg-landing.jpeg"
 import PreviewButton from "../components/PreviewButton.tsx";
 import {useDisclosure} from "@mantine/hooks";
 import RegisterModal from "../components/RegisterModal.tsx";
+import Login from "../components/Login.tsx";
 const Landing = () => {
 
 
@@ -10,9 +11,12 @@ const Landing = () => {
   return (
     <Box maw={1920} mx="auto">
 
-      <PreviewButton />
+      <Flex w="100%" justify="center">
+        <PreviewButton />
+      </Flex>
 
-      <Flex direction={{ base: "column", sm: "row"}} justify="space-around" align="center" h="100vh">
+
+      <Flex direction={{ base: "column", sm: "row"}} justify="space-around" align="center">
         <Box>
           <Flex>
             <Text c="gray" style={{ fontSize: 36, fontWeight: 700 }}>Med</Text>

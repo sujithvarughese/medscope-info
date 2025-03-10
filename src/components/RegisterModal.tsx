@@ -1,6 +1,8 @@
 import {Button, Flex, Modal, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
 import {useAuthContext} from "../context/AuthContext.tsx";
+import {useAppDispatch} from "../utilities/hooks.ts";
+import {register} from "../features/globalSlice.ts";
 
 type RegisterModalProps = {
   opened: boolean;
@@ -9,7 +11,7 @@ type RegisterModalProps = {
 
 const RegisterModal = ({ opened, onClose }: RegisterModalProps) => {
 
-  const { register } = useAuthContext()
+  const dispatch = useAppDispatch()
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -26,7 +28,7 @@ const RegisterModal = ({ opened, onClose }: RegisterModalProps) => {
 
   return (
     <Modal opened={opened} onClose={onClose} title="Register" size="lg">
-      <form onSubmit={form.onSubmit(values => register(values))}>
+      <form onSubmit={form.onSubmit(values => dispatch(register(values)))}>
 
         <Flex direction="column" gap={8}>
           <TextInput
@@ -42,12 +44,14 @@ const RegisterModal = ({ opened, onClose }: RegisterModalProps) => {
           <TextInput
             placeholder="Email"
             key={form.key('email')}
+            type="email"
             {...form.getInputProps('email')}
           />
           <TextInput
             placeholder="Password"
             key={form.key('password')}
-            {...form.getInputProps('name')}
+            type="password"
+            {...form.getInputProps('password')}
           />
 
           <Button type="submit" mt="sm">Submit</Button>

@@ -5,12 +5,12 @@ import {BackgroundImage, Box, Flex} from "@mantine/core";
 
 const Home = () => {
   return (
-    <BackgroundImage src={bg}>
+
       <Flex direction="column" gap={32} maw={1440} mx="auto" p={{ base: "md", md: "xl"}}>
         <HealthTip />
         <NewsSection />
       </Flex>
-    </BackgroundImage>
+
   );
 };
 

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
-import {openai} from "../utilities/api";
+import {api, openai} from "../utilities/api";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "../context/actions.ts";
 
 type PossibleConditions = {
   condition: string,
@@ -10,8 +11,21 @@ type PossibleConditions = {
   additionalInfo: string,
 }
 
+type UserProps = {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+}
+
 export type Props = {
   loading: boolean,
+  user: {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+  } | null,
   profile: {
     age: number;
     sex: string,
@@ -113,6 +127,7 @@ export type Props = {
 
 const initialState: Props = {
   loading: false,
+  user: null,
   profile: {
     age: 18,
     sex: "male",
@@ -324,8 +339,40 @@ const globalSlice = createSlice({
     }
   },
   extraReducers: builder => {
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.user = action.payload
+      state.loading = false
+    })
+    builder.addCase(register.rejected, (state) => {
+      state.loading = false
+      console.log("Failed to fetch response")
+    })
+    builder.addCase(register.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.user = action.payload
+      state.loading = false
+    })
+    builder.addCase(login.rejected, (state) => {
+      state.loading = false
+      console.log("Failed to fetch response")
+    })
+    builder.addCase(login.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(logout.fulfilled, (state) => {
+      state.user = null
+      state.loading = false
+    })
+    builder.addCase(logout.rejected, (state) => {
+      state.loading = false
+      console.log("Failed to fetch response")
+    })
+    builder.addCase(logout.pending, (state) => {
+      state.loading = true
+    })
     builder.addCase(fetchHealthTip.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.results.healthTip = action.payload
       state.loading = false
     })
@@ -430,6 +477,37 @@ const globalSlice = createSlice({
   }
 })
 
+export const register = createAsyncThunk('global/register', async (payload: UserProps) => {
+  console.log(payload)
+  try {
+    const response = await api.post("/auth/register", payload)
+    const { user } = response.data
+    return user
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+export const login = createAsyncThunk('global/login', async (payload: { email: string, password: string }) => {
+  try {
+    const response = await api.post("/auth/login", payload)
+    const { user } = response.data
+    return user
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+export const logout = createAsyncThunk('global/logout', async () => {
+  try {
+    await api("/auth/logout");
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+
+
 export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  () => {
   try {
     const response = await openai.post("", {
@@ -476,6 +554,7 @@ export const fetchConditionInfo = createAsyncThunk('global/fetchConditionInfo', 
     console.log(error)
   }
 })
+
 export const fetchDrugInfo = createAsyncThunk('global/fetchDrugInfo', async (payload: string) => {
   try {
     const response = await openai.post("", {

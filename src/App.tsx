@@ -1,4 +1,3 @@
-
 import {AppShell} from "@mantine/core";
 import Header from "./components/Header.tsx";
 import {HashRouter, Outlet, Route, Routes} from "react-router";
@@ -15,14 +14,13 @@ import About from "./pages/About.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import Layout from "./components/Layout.tsx";
-import {useAuthContext} from "./context/AuthContext.tsx";
 import Landing from "./pages/Landing.tsx";
+import {useAppSelector} from "./utilities/hooks.ts";
+import {useEffect} from "react";
 
 const App = () => {
 
-  // @ts-ignore
-  const { user } = useAuthContext()
-  console.log(user)
+  const user = useAppSelector(state => state.global.user)
 
   if (user) {
     return (

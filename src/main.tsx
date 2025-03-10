@@ -20,17 +20,13 @@ import AssessmentForm from "./pages/AssessmentForm.tsx";
 import AssessmentResults from "./pages/AssessmentResults.tsx";
 import BmiForm from "./pages/BmiForm.tsx";
 import BmiResults from "./pages/BmiResults.tsx";
-import {AuthProvider} from "./context/AuthContext.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AuthProvider>
       <MantineProvider>
         <Provider store={store}>
           <App />
         </Provider>
       </MantineProvider>
-    </AuthProvider>
-
   </StrictMode>,
 )

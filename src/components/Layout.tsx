@@ -6,7 +6,7 @@ import bg from "../assets/bg-landing-1.jpeg"
 const Layout = () => {
   return (
     <AppShell>
-      <BackgroundImage src={bg} style={{ zIndex: -1}}>
+      <BackgroundImage src={bg} h="100%">
       <Header />
       <AppShell.Main>
 
