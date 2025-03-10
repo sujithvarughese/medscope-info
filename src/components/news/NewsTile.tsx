@@ -18,60 +18,17 @@ const NewsTile = ({ source, title, description, url, urlToImage, date }: NewsTil
   const year = date.substring(0,4)
 
   return (
-    <Paper style={styles.container}>
-      <Image style={styles.image} src={urlToImage} fallbackSrc={defaultImage} alt="news-cover"/>
-      <Box style={styles.textContainer} >
-        <Anchor href={url} style={styles.title}>{title}</Anchor>
-        <Text style={styles.description}>{description}</Text>
-        <Text style={styles.source}>{source}</Text>
-        <Text style={styles.date}>{monthString[month - 1]} {day}, {year}</Text>
+    <Paper style={{ boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)", borderRadius: 10}}>
+      <Image src={urlToImage} fallbackSrc={defaultImage} alt="news-cover" height={160} style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}/>
+      <Box p="xs">
+        <Anchor href={url} style={{ fontWeight: 700 }} lineClamp={2}>{title}</Anchor>
+        <Text lineClamp={3}>{description}</Text>
+        <Text style={{ fontSize: 14, fontWeight: 600 }}>{source}</Text>
+        <Text style={{ fontSize: 14, fontStyle: "italic", color: "gray" }}>{monthString[month - 1]} {day}, {year}</Text>
       </Box>
     </Paper>
 
  );
-};
-
-const styles = {
-  container: {
-    marginRight: 12,
-    backgroundColor: "white",
-    elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    borderRadius: 10,
-  },
-
-  image: {
-    height: 120,
-  },
-  textContainer: {
-    flex: 1,
-    padding: 6,
-    gap: 3,
-  },
-  title: {
-
-    fontWeight: "600",
-  },
-  description: {
-
-  },
-  source: {
-    fontSize: 13,
-  },
-  touchable: {
-
-  },
-  date: {
-    fontSize: 12,
-    fontStyle: "italic",
-    color: "gray"
-  }
 };
 
 export default NewsTile;

@@ -529,22 +529,12 @@ export const fetchHealthTip = createAsyncThunk('global/fetchHealthTip', async  (
 
 export const fetchConditionInfo = createAsyncThunk('global/fetchConditionInfo', async (payload: string) => {
   console.log(payload)
-  const options = {
-    method: 'POST',
-    url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getMedicalInformation',
-    params: {noqueue: '1'},
-    headers: {
-      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-      'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
-      'Content-Type': 'application/json'
-    },
-    data: {
-      condition: payload,
-      lang: 'en'
-    }
-  };
+  const data = {
+    condition: payload,
+    lang: 'en'
+  }
   try {
-    const response = await axios.request(options)
+    const response = await api.post("/research/conditions", data)
     const { result } = response.data
     return result
   } catch (error) {
@@ -586,32 +576,22 @@ export const fetchDrugInfo = createAsyncThunk('global/fetchDrugInfo', async (pay
 
 export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAssessment', async (_payload, { getState }) => {
   const state: any = getState()
-  const options = {
-    method: 'POST',
-    url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/analyzeSymptomsAndDiagnose',
-    params: {noqueue: '1'},
-    headers: {
-      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-      'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
-      'Content-Type': 'application/json'
+  const data = {
+    symptoms: state.global.profile.symptoms,
+    patientInfo: {
+      age: state.global.profile.age,
+      gender: state.global.profile.sex,
+      height: state.global.profile.height,
+      weight: state.global.profile.weight,
+      medicalHistory: state.global.profile.medicalHistory,
+      currentMedications: state.global.profile.currentMedications,
+      allergies: state.global.profile.allergies,
+      lifestyle: state.global.profile.lifestyle,
     },
-    data: {
-      symptoms: state.global.profile.symptoms,
-      patientInfo: {
-        age: state.global.profile.age,
-        gender: state.global.profile.sex,
-        height: state.global.profile.height,
-        weight: state.global.profile.weight,
-        medicalHistory: state.global.profile.medicalHistory,
-        currentMedications: state.global.profile.currentMedications,
-        allergies: state.global.profile.allergies,
-        lifestyle: state.global.profile.lifestyle,
-      },
-      lang: 'en'
-    }
-  };
+    lang: 'en'
+  }
   try {
-    const response = await axios.request(options);
+    const response = await api.post("ai/symptoms", data);
     return response.data
   } catch (error) {
     console.error(error);
@@ -620,33 +600,23 @@ export const fetchSymptomAssessment = createAsyncThunk('global/fetchSymptomAsses
 
 export const fetchHealthRecommendations = createAsyncThunk('global/fetchHealthRecommendations', async (_payload, { getState }) => {
   const state: any = getState()
-  const options = {
-    method: 'POST',
-    url: 'https://ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com/getHealthRecommendations',
-    params: {noqueue: '1'},
-    headers: {
-      'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-      'x-rapidapi-host': 'ai-medical-diagnosis-api-symptoms-to-results.p.rapidapi.com',
-      'Content-Type': 'application/json'
+  const data = {
+    healthProfile: {
+      age: state.global.profile.age,
+      gender: state.global.profile.sex,
+      weight: state.global.profile.weight,
+      height: state.global.profile.height,
+      bmi: state.global.profile.bmi,
+      medicalConditions: state.global.profile.medicalConditions,
+      lifestyle: state.global.profile.lifestyle,
+      familyHistory: state.global.profile.familyHistory,
+      vitals: state.global.profile.vitals
     },
-    data: {
-      healthProfile: {
-        age: state.global.profile.age,
-        gender: state.global.profile.sex,
-        weight: state.global.profile.weight,
-        height: state.global.profile.height,
-        bmi: state.global.profile.bmi,
-        medicalConditions: state.global.profile.medicalConditions,
-        lifestyle: state.global.profile.lifestyle,
-        familyHistory: state.global.profile.familyHistory,
-        vitals: state.global.profile.vitals
-      },
-      goals: state.global.profile.goals,
-      lang: 'en'
-    }
-  };
+    goals: state.global.profile.goals,
+    lang: 'en'
+  }
   try {
-    const response = await axios.request(options);
+    const response = await api.post("ai/assessment", data);
     return response.data
   } catch (error) {
     console.error(error);

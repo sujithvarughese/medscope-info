@@ -29,11 +29,11 @@ const Header = () => {
       </ActionIcon>
 
       {user ?
-        <Flex gap={{ base: 16, sm: 42}} align="center">
+        <Flex gap={32} p={16} align="center">
           <Box display={{ base: "none", md: "initial" }}>
             <Link to="/" style={styles.link}>Home</Link>
           </Box>
-          <Link to="/ai" style={styles.link}>AI Assessment</Link>
+          <Link to="/ai" style={styles.link}>AI</Link>
           <Link to="/research" style={styles.link}>Research</Link>
           <Link to="/about" style={styles.link}>About</Link>
           <Button onClick={handleLogout}>Logout</Button>

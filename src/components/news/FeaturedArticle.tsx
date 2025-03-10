@@ -10,57 +10,25 @@ type FeaturedArticleProps = {
   date: string,
 }
 
-const FeaturedArticle = ({ source, title, url, description, urlToImage }: FeaturedArticleProps) => {
-  return (
+const FeaturedArticle = ({ source, title, url, description, urlToImage, date }: FeaturedArticleProps) => {
 
-    <Paper style={styles.container}>
-      <Box style={styles.container}>
-        <Image style={styles.image}  src={urlToImage} fallbackSrc={defaultImage} alt="news-cover"/>
-        <Box style={styles.textContainer}>
-          <Anchor href={url} style={styles.title}>{title}</Anchor>
-          <Text style={styles.description}>{description}</Text>
-          <Text style={styles.source}>{source}</Text>
-        </Box>
+  const monthString = ["January", "February","March","April","May","June","July","August","September","October","November", "December"]
+  const month = Number(date.substring(5, 7))
+  const day = date.substring(8, 10)
+  const year = date.substring(0,4)
+
+  return (
+    <Paper style={{ boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)", borderRadius: 10}}>
+      <Image src={urlToImage} fallbackSrc={defaultImage} alt="news-cover" height={300} style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}/>
+      <Box p="xs">
+        <Anchor href={url} style={{ fontWeight: 700 }}>{title}</Anchor>
+        <Text>{description}</Text>
+        <Text style={{ fontSize: 14, fontWeight: 600 }}>{source}</Text>
+        <Text style={{ fontSize: 14, fontStyle: "italic", color: "gray" }}>{monthString[month - 1]} {day}, {year}</Text>
       </Box>
     </Paper>
 
  );
-};
-
-const styles = {
-  container: {
-    elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    borderRadius: 10,
-    width: "100%",
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  textContainer: {
-    padding: 8,
-  },
- title: {
-    fontSize: 16,
-    fontWeight: "800",
-  },
-  description: {
-
-  },
-  source: {
-    fontSize: 14,
-    fontWeight: "600",
-    fontStyle: "italic",
-  }
 };
 
 export default FeaturedArticle;

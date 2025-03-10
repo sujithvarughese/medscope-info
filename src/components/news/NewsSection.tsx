@@ -35,11 +35,10 @@ const NewsSection = () => {
   }, [])
 
   return (
-    <Flex direction="column" gap={32}>
-      {!!healthArticles.length &&
-      <Box>
+    <>
+      {!!healthArticles.length && !!scienceArticles.length &&
+      <Flex direction="column" gap={16}>
         <Title style={styles.header}>Top Health News</Title>
-
         <Flex direction={{ base: "column", sm: "row" }} gap={16}>
           <FeaturedArticle
             source={healthArticles[0]?.source.name}
@@ -58,7 +57,7 @@ const NewsSection = () => {
             date={healthArticles[1]?.publishedAt}
           />
         </Flex>
-        <Carousel slideSize={{base: "50%", sm: "33.3%", md: "20%"}} height={300} align="start">
+        <Carousel slideSize={{base: "50%", sm: "33.3%", lg: "20%"}} slideGap={16} align="start">
           {healthArticles?.slice(2).map((item, index) =>
             <Carousel.Slide key={index}>
               <NewsTile
@@ -73,10 +72,7 @@ const NewsSection = () => {
 
           )}
         </Carousel>
-      </Box>
-      }
-      {!!scienceArticles.length &&
-      <Box>
+
         <Text style={styles.header}>Top Science News</Text>
         <Flex direction={{ base: "column", sm: "row" }} gap={16}>
           <FeaturedArticle
@@ -97,7 +93,7 @@ const NewsSection = () => {
           />
         </Flex>
 
-        <Carousel slideSize={{base: "50%", sm: "33.3%", md: "20%"}} height={300} align="start">
+        <Carousel slideSize={{base: "50%", sm: "33.3%", lg: "20%"}} slideGap={16} align="start">
           {scienceArticles?.slice(2).map((item, index) =>
             <Carousel.Slide key={index}>
               <NewsTile
@@ -111,9 +107,9 @@ const NewsSection = () => {
             </Carousel.Slide>
           )}
         </Carousel>
-      </Box>
+      </Flex>
       }
-    </Flex>
+    </>
  );
 };
 
