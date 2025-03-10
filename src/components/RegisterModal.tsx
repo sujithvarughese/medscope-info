@@ -1,6 +1,5 @@
 import {Button, Flex, Modal, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
-import {useAuthContext} from "../context/AuthContext.tsx";
 import {useAppDispatch} from "../utilities/hooks.ts";
 import {register} from "../features/globalSlice.ts";
 
