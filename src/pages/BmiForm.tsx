@@ -43,12 +43,12 @@ const BmiForm = () => {
       <Flex style={styles.section}>
         <Text style={styles.heading}>Sex</Text>
         <Text style={styles.selections}>
-          <Button style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
+          <Button w={120} variant="default"  style={[styles.selection, sex === "male" && styles.selected]} onClick={() => dispatch(setSex("male"))}>
             <MdMale />
             <Text>Male</Text>
           </Button>
 
-          <Button style={[styles.selection, sex === "female" && styles.selected]} onClick={() => dispatch(setSex("female"))}>
+          <Button w={120} variant="default"  style={[styles.selection, sex === "female" && styles.selected]} onClick={() => dispatch(setSex("female"))}>
             <MdFemale />
             <Text>Female</Text>
           </Button>
@@ -115,7 +115,7 @@ const styles = {
 
   },
   selected: {
-    backgroundColor: "blue",
+    backgroundColor: "#20B2AA",
     color: "white",
   }
 };
