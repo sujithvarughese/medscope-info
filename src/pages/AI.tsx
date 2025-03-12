@@ -8,7 +8,7 @@ const AI = () => {
   const navigate = useNavigate();
 
   return (
-    <BackgroundImage src={bg1} w={{ base: "95%", md: "80%", lg: "70%" }} m="auto" h="85vh" style={{ borderRadius: "12px" }} maw={1000} >
+    <BackgroundImage src={bg1} w={{ base: "95%", md: "80%", lg: "70%" }} m="auto" h={{ md: "85vh"}} style={{ borderRadius: "12px" }} maw={1000} >
       <Box maw={900} m="auto" p={{ base: "md", md: "xl"}} h="100%">
 
         <Text py="xl" style={{ fontSize: 32, fontWeight: 700, textAlign: "center" }}>Powerful AI-based Health Tools</Text>
