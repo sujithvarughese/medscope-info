@@ -1,5 +1,9 @@
 # MedScope
 
+[React Native GitHub Link](https://github.com/sujithvarughese/medscope-native)
+
+[Back-end GitHub link](https://github.com/sujithvarughese/medscope-web-api)
+
 MedScope is a comprehensive health and medical information app designed to give users quick and reliable access to **drug information**, **medical conditions**, **symptom-based assessments**, and **basic health metrics** (e.g., BMI). By integrating multiple data sources and intelligent algorithms, MedScope helps users make more informed health-related decisions.
 
 ---
