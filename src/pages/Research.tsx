@@ -26,9 +26,9 @@ const Research = () => {
 
   return (
       <Flex direction="column" gap={16} p="xl" maw={900} mx="auto">
-        <Flex direction={{ base: "column", sm: "row" }} p="xl" bg="white" justify="center" align="center"  mx="auto" gap={16} w={{ base: 300, sm: 480 }} style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
+        <Flex direction={{ base: "column", sm: "row" }} p="xl" bg="white" justify="space-around" align="center"  mx="auto" gap={16} w={{ base: 300, sm: 400 }} style={{ borderRadius: 12, boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)" }}>
           <Selector category="combined" onSelect={(item: string, group: string) => setValue({ item: item, group: group })} />
-          {loading ? <Loader type="bars" />  : <Button onClick={handleSubmit} bg="#20B2AA">Search</Button>}
+          {loading ? <Loader type="bars" />  : <Button onClick={handleSubmit} w={{ base: "50%", md: "100%" }} bg="#20B2AA">Search</Button>}
         </Flex>
         {displayResults === "conditions" && <ConditionResults />}
         {displayResults === "drugs" && <DrugResults />}
