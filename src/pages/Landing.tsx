@@ -2,13 +2,19 @@ import {Box, Flex, Image, Text} from "@mantine/core";
 import bg from "../assets/bg-landing.jpeg"
 import img2 from "../assets/bg-landing-3.jpeg"
 import PreviewButton from "../components/PreviewButton.tsx";
+import { motion } from "motion/react"
 
 const Landing = () => {
   return (
     <Flex direction="column" maw={1920} mx="auto" p={32} gap={36} m="auto">
 
       <Flex direction={{ base: "column-reverse", sm: "row"}} justify="space-evenly" align="center">
-        <Flex direction="column" align={{ base: "center", md: "flex-start" }}>
+        <Flex
+          component={motion.div}
+          initial={{ y: "-20%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          direction="column" align={{ base: "center", md: "flex-start" }}>
           <Flex>
             <Text c="gray" style={{ fontSize: 56, fontWeight: 700 }}>Med</Text>
             <Text c="blue" style={{ fontSize: 56, fontWeight: 700 }}>Scope</Text>
@@ -16,12 +22,22 @@ const Landing = () => {
           <Text style={{ fontWeight: 600 }} pb="xl">Your Health, Your Knowledge, Your Control</Text>
           <PreviewButton />
         </Flex>
-        <Image src={bg} alt="Landing Page" w={{ base: "90%", sm: "50%" }} style={{ borderRadius: 12 }}/>
+        <Image
+          component={motion.img}
+          initial={{ scale: 0.5, originX: 1, originY: 1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          src={bg} alt="Landing Page" w={{ base: "90%", sm: "50%" }} style={{ borderRadius: 12 }}/>
       </Flex>
 
       <Flex direction={{ base: "column-reverse", sm: "row"}} justify="space-evenly" align="center">
 
-        <Box p={16}>
+        <Box
+          component={motion.div}
+          initial={{ y: "20%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          p={16}>
           <Text style={{ fontWeight: 700, fontSize: 24, textAlign: "center", padding: 16 }}>Welcome to MedScope – Your Ultimate Health Companion</Text>
           <Box>
             <Text style={{ fontSize: 20, fontWeight: 500 }}>Why Choose MedScope?</Text>

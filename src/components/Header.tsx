@@ -6,6 +6,7 @@ import {useDisclosure} from "@mantine/hooks";
 import RegisterModal from "./RegisterModal.tsx";
 import {useAppDispatch, useAppSelector} from "../utilities/hooks.ts";
 import {logout} from "../features/globalSlice.ts";
+import {motion} from "motion/react";
 
 const Header = () => {
 
@@ -22,7 +23,12 @@ const Header = () => {
 
 
   return (
-    <Flex align="center" justify="space-between" p={{ base: 2, md: 16 }} pb={16}>
+    <Flex
+      component={motion.div}
+      initial={{ y: "-20%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      align="center" justify="space-between" p={{ base: 2, md: 16 }} pb={16}>
       <ActionIcon variant="subtle" w={90} h={90} onClick={() => navigate("/")}>
         <Image src={logo} alt="MedScope" />
       </ActionIcon>
